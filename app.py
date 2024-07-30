@@ -44,19 +44,26 @@ goals_args.add_argument('achieved',type=bool)
 class Goals(Resource):
     def post(self):
         data=goals_args.parse_args()
-        user_id =get_jwt_identity()
-        new_goal=Goal(
-            user_id=user_id,
-            title=data.get('title'),
-            description=data.get('description'),
-            target_date= data.get('target_date'),
-            achieved=data.get('achieved')
+        # user_id =get_jwt_identity()
+
+        current_identity = get_jwt_identity()
+        user_type = current_identity['type']
+        user_id = current_identity['id']
+
+        if user_type == 'user':
+
+            new_goal=Goal(
+                user_id=user_id,
+                title=data.get('title'),
+                description=data.get('description'),
+                target_date= data.get('target_date'),
+                achieved=data.get('achieved')
         )
-        db.session.add(new_goal)
-        db.session.commit()
-        new_goal_dict=new_goal.to_dict()
-        response = make_response(jsonify(new_goal_dict),201)
-        return response
+            db.session.add(new_goal)
+            db.session.commit()
+            new_goal_dict=new_goal.to_dict()
+            response = make_response(jsonify(new_goal_dict),201)
+            return response
 
 
 
@@ -94,9 +101,25 @@ class Goals(Resource):
         
 
 class Coaches(Resource):
-    pass
-
-    
+    def get(self):
+        coaches=Coach.query.all()
+        coaches_dict=[coach.to_dict()for coach in coaches]
+        response=make_response(jsonify(coaches_dict),200)
+        return response
+    def delete(self):
+        # current_identity = get_jwt_identity()
+        # user_type = current_identity['type']
+        # user_id = current_identity['id']
+        # if user_type=='coach':
+            coach_id=request.get_json()['coach_id']
+            coach=Coach.query.filter_by(id=coach_id).first()
+            if coach:
+                db.session.delete(coach)
+                db.session.commit()
+                response=make_response(jsonify({'msg':'Coach removed successfully'}),200)
+                return response
+            else: 
+                return make_response(jsonify({'msg':'Coach not found'}),404)
 
 
 class NutritionLogs(Resource):

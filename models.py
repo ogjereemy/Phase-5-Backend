@@ -114,13 +114,15 @@ class ProgressLog(db.Model,SerializerMixin):
 
 
 
-class NutritionLog(db.Model,SerializerMixin):
+class NutritionLog(db.Model,SerializerMixin): ##update nutrition log for every meal that is taken
     __tablename__='nutrition_logs'
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     date=db.Column(db.Date,nullable=False)
     meal_type=db.Column(Enum(MealType),nullable=False)
     calory_intake=db.Column(db.Integer,nullable=False)
+    protein=db.Column(db.Integer,nullable=False)
+    fat=db.Column(db.Integer,nullable=False)
     carbs=db.Column(db.Integer,nullable=False)
     notes=db.Column(db.String(100),nullable=False)
     user=db.relationship('User',back_populates='nutrition_logs')
