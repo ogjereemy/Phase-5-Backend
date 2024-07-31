@@ -202,14 +202,157 @@ class ProgressLogs(Resource):
 
 
 class Exercises(Resource):
-    pass
+    def post(self): ## for coaches
+        new_exercise =Exercise(
+                workout_id=request.get_json()['workout_id'] ,
+                name=request.get_json()['name'],
+                sets=request.get_json()['sets'] ,
+                reps= request.get_json()['reps'],
+                weight= request.get_json()['weight']
+        )
+        db.session.add(new_exercise)
+        db.session.commit()
+        new_dict=new_exercise.to_dict()
+        response=make_response(jsonify(new_dict),201)
+        return  response
+
+
+
+    def get(self): ## for everybody
+        exercises = Exercise.query.all()
+        exercises_dict=[exercise.to_dict for exercise in exercises]
+        response=make_response(jsonify(exercises_dict),200)
+        return response
+
+    def patch(self): ## for coaches
+        exercise_id=request.get_json()['exercise_id']
+        exercise=Exercise.query.filter_by(id=exercise_id).first()
+        if exercise:
+            exercise.sets=request.get_json()['sets']
+            exercise.reps=request.get_json()['reps']
+            exercise.weight=request.get_json()['weight']
+            db.session.commit()
+            exe_dict=exercise.to_dict()
+            response=make_response(jsonify(exe_dict),200)
+            return response
+        else:
+            response=make_response(jsonify({'msg':'Exercise not found'}),404)
+            return response
+
 
 class Workouts(Resource):
-    pass
+    def post(self): ## for coaches
+        current_identity = get_jwt_identity()
+        user_type = current_identity['type']
+        user_id = current_identity['id']
+        data=request.get_json()
+        if user_type=='coach':
+            new_workout=Workout(
+                workout_plan_id= data.get('workout_plan_id'),
+                user_id=data.get('user_id'),
+                coach_id=user_id,
+                title= data.get_json('title'),
+                day_of_the_week=data.get_json('day_of_the_week'),
+                exercises=data.get_json('exercises')
+            )
+            db.session.add(new_workout)
+            db.session.commit()
+            new_dict=new_workout.to_dict()
+            response=make_response(jsonify(new_dict),201)
+            return response
+
+        
+    def get(self): ## for users
+        workouts=Workout.query.all()
+        work_dict=[workout.to_dict() for workout in workouts]
+        response=make_response(jsonify(work_dict),200)
+        return response
+    def patch(self):## for coaches
+        workout_id=request.get_json()['workout_id']
+        workout=Workout.query.filter_by(id=workout_id).first()
+        if workout:
+            workout.title=request.get_json('title')
+            workout.day_of_the_week =request.get_json('day_of_the_week')
+            workout.exercises=request.get_json('day_of_the_week')
+            db.session.commit()
+            work_dict=workout.to_dict
+            response=make_response(jsonify(work_dict),200)
+            return response
+
+        else :
+            response=make_response(jsonify({'msg':'Workout not found'}),404)
+            return response
+        
+    def delete(self):## for coaches
+        workout_id=request.get_json()['workout_id']
+        workout=Workout.query.filter_by(id=workout_id).first()
+        if workout:
+                db.session.delete(workout)
+                db.session.commit()
+                response=make_response(jsonify({'msg':'Workout deleted successfully.'}),200)
+                return response
+        else :
+            response=make_response(jsonify({'msg':'Workout not found'}),404)
+            return response
 
 class WorkoutPlans(Resource):
-    pass
+    def post(self):   ## for coaches
+        current_identity = get_jwt_identity()
+        user_type = current_identity['type']
+        user_id = current_identity['id']
+        data=request.get_json()
+        if user_type=='coach':
+            new_workoutplan=WorkoutPlan(
+                coach_id= user_id,
+                user_id=data.get('user_id'),
+                title=data.get('title'),
+                description=data.get('description') ,
+                workout_days =data.get('workout_days')
 
+            )
+            db.session.add(new_workoutplan)
+            db.session.commit()
+            new_dict=new_workoutplan.to_dict()
+            response=make_response(jsonify(new_dict),201)
+            return response
+        
+    def get(self):  ## for users
+        workout_plans=WorkoutPlan.query.all()
+        work_dict=[workout_plan.to_dict() for workout_plan in workout_plans]
+        response=make_response(jsonify(work_dict),200)
+        return response
+            
+    def patch(self): ## for coaches
+        work_id=request.get_json()['workout_plan_id']
+        workout_plan= WorkoutPlan.query.filter_by(id=work_id).first()
+        if workout_plan:
+            title=request.get_json()['title']
+            description=request.get_json()['description']
+            workout_days=request.get_json()['workout_days']
+
+            workout_plan.title=title
+            workout_plan.description=description
+            workout_plan.workout_days=workout_days
+            db.session.commit()
+            work_dict=workout_plan.to_dict()
+            response = make_response(jsonify(work_dict),200)
+            return response
+        
+        else:
+            response=make_response(jsonify({'msg':'Workout Plan not found'}),404)
+            return response
+        
+    def delete(self):  ## for coaches
+        work_id=request.get_json()['workout_plan_id']
+        workout_plan= WorkoutPlan.query.filter_by(id=work_id).first()
+        if workout_plan:
+            db.session.delete(workout_plan)
+            db.session.commit()
+            response=make_response(jsonify({'msg':'Workout plan deleted successfully.'}),200)
+            return response
+        else:
+            response=make_response(jsonify({'msg':'Workout plan not found'}),404)
+            return response
 class UserProfile(Resource):
     def get(self):
         current_identity = get_jwt_identity()

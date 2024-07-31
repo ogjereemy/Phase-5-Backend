@@ -28,6 +28,7 @@ class User(db.Model,SerializerMixin):
     coach=db.relationship('Coach',back_populates='users')
     nutrition_logs=db.relationship('NutritionLog',back_populates='user')
     workouts=db.relationship('Workout',back_populates='user')
+    workout_plans=db.relationship('WorkoutPlan',back_populates='user')
     progress_logs=db.relationship('ProgressLog',back_populates='user')
     @hybrid_property
     def password_hash(self):
@@ -54,7 +55,7 @@ class Coach(db.Model,SerializerMixin):
     is_admin = db.Column(db.Boolean, default=False, nullable=False)
     users=db.relationship('User',back_populates='coach')
     workout_plans=db.relationship('WorkoutPlan',back_populates='coach')
-
+    workouts=db.relationship('Workout',back_populates='coach')
     @hybrid_property
     def password_hash(self):
         return self._password_hash
@@ -72,17 +73,19 @@ class WorkoutPlan(db.Model,SerializerMixin):
     __tablename__="workout_plans"
     id=db.Column(db.Integer, primary_key=True)
     coach_id= db.Column(db.Integer ,db.ForeignKey('coaches.id'),nullable=False)
+    user_id= db.Column(db.Integer ,db.ForeignKey('users.id'),nullable=False)
     title=db.Column(db.String(50),nullable=False)
     description= db.Column(db.String,nullable=False)
     workout_days=db.Column(db.Integer , nullable=False)
     workouts=db.relationship('Workout',back_populates='workout_plan')
     coach=db.relationship('Coach',back_populates='workout_plans')
-
+    user=db.relationship('User',back_populates='workout_plans')
 class Workout(db.Model,SerializerMixin):
     __tablename__="workouts"
     id= db.Column(db.Integer,primary_key=True)
     workout_plan_id =db.Column(db.Integer,db.ForeignKey('workout_plans.id'),nullable=False)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
+    coach_id=db.Column(db.Integer,db.ForeignKey('coaches.id'),nullable=False)
     title= db.Column(db.String(50),nullable=False)
     day_of_week=db.Column(db.String(20),nullable=False)
     # workout_date=db.Column(db.Date,nullable=False,default=datetime.utcnow().date())
@@ -90,7 +93,7 @@ class Workout(db.Model,SerializerMixin):
     user=db.relationship('User',back_populates='workouts')
     exercises1=db.relationship('Exercise',back_populates='workout')
     workout_plan=db.relationship('WorkoutPlan',back_populates='workouts')
-
+    coach=db.relationship('Coach',back_populates='workouts')
 class Exercise(db.Model,SerializerMixin):
     __tablename__='exercises'
     id=db.Column(db.Integer,primary_key=True)
