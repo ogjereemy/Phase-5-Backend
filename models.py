@@ -101,7 +101,7 @@ class Exercise(db.Model,SerializerMixin):
     weight=db.Column(db.Integer,nullable=False)
     workout=db.relationship('Workout',back_populates='exercises1')
 
-class ProgressLog(db.Model,SerializerMixin):
+class ProgressLog(db.Model,SerializerMixin): ##weekly input 
     __tablename__="progress_logs"
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
