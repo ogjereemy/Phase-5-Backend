@@ -13,11 +13,11 @@ from config import *
 
 app.config['SECRET_KEY'] = 'bf33b4e2a163a29294876531f6ba53ead9'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=25)
-app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=90)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=60)
 app_api = Api(app_bp)
 
 app.register_blueprint(app_bp)
-# app.register_blueprint(auth_bp)
+app.register_blueprint(auth_bp) 
 
 class Users(Resource):
     def get(self):
