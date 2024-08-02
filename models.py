@@ -102,6 +102,7 @@ class Exercise(db.Model,SerializerMixin):
     sets=db.Column(db.Integer,nullable=False)
     reps=db.Column(db.Integer,nullable=False)
     weight=db.Column(db.Integer,nullable=False)
+    description=db.Column(db.String,nullable=False)
     workout=db.relationship('Workout',back_populates='exercises1')
 
 class ProgressLog(db.Model,SerializerMixin): ##weekly input 

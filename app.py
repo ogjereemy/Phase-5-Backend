@@ -208,7 +208,8 @@ class Exercises(Resource):
                 name=request.get_json()['name'],
                 sets=request.get_json()['sets'] ,
                 reps= request.get_json()['reps'],
-                weight= request.get_json()['weight']
+                weight= request.get_json()['weight'],
+                description=request.get_json()['description']
         )
         db.session.add(new_exercise)
         db.session.commit()
@@ -220,7 +221,7 @@ class Exercises(Resource):
 
     def get(self): ## for everybody
         exercises = Exercise.query.all()
-        exercises_dict=[exercise.to_dict for exercise in exercises]
+        exercises_dict=[exercise.to_dict() for exercise in exercises]
         response=make_response(jsonify(exercises_dict),200)
         return response
 
