@@ -5,8 +5,7 @@ from sqlalchemy import text
 from datetime import datetime,date
 
 
- # cardio_plan = WorkoutPlan(name="Cardio Plan")
-    # db.session.add(cardio_plan)
+ 
 
     # # Create Exercises for the plan
     # exercise1 = Exercise(name="Running", duration=30, type="Cardio", workout_plan=cardio_plan)
@@ -16,21 +15,10 @@ from datetime import datetime,date
     # db.session.commit() 
 
 
-    # cardio=WorkoutPlan()
-    # hypertrophe=WorkoutPlan()
-    # weight_loss=WorkoutPlan()
-    # yoga=WorkoutPlan()
-    # stretches=WorkoutPlan()
-    # db.session.add(cardio)
-    # db.session.add(hypertrophe)
-    # db.session.add(weight_loss)
-    # db.session.add(yoga)
-    # db.session.add(stretches)
-    # db.session.commit()
+    
 
 
-    # steve=Coach(username='steve',email='steve@gmail.com',_password_hash=)
-
+    
 
 
 #$ used drop tables because query.delete() brings id error
@@ -328,7 +316,7 @@ with app.app_context():
     )
 
     goal12 = Goal(
-    user_id=6,  # Liam Anderson's user_id
+    user_id=6,  
     title="Enhance Shoulder Strength",
     description="Increase your shoulder press weight by 15 pounds in 6 weeks.",
     target_date=date(2024, 9, 15),
@@ -1165,4 +1153,111 @@ with app.app_context():
     for progress_log in progress_logs:
         db.session.add(progress_log)
     db.session.commit()
+
+    ## Workout_Plan
+
+    cardio=WorkoutPlan(
+        coach_id = 1,
+        user_id = 1,
+        title = "Advanced Cardio Plan",
+        description = "An advanced cardio plan for experienced individuals aiming for peak endurance.",
+        workout_days = 5
+    )
+    hypertrophe=WorkoutPlan(
+        coach_id = 1,
+        user_id = 7,
+        title = "Beginner Hypertrophy Plan",
+        description = "A beginner hypertrophy plan designed to build muscle mass with basic exercises.",
+        workout_days = 4
+    )
+    weight_loss=WorkoutPlan(
+        coach_id = 5,
+        user_id = 5,
+        title = "Basic Weight Loss Plan",
+        description = "A basic weight loss plan focused on cardio and full-body workouts to help shed excess fat.",
+        workout_days = 4
+    )
+    yoga=WorkoutPlan(
+        coach_id = 3,
+        user_id = 3,
+        title = "Beginner Yoga Plan",
+        description = "A gentle introduction to yoga focusing on basic poses and breathing techniques.",
+        workout_days = 3
+    )
+    yoga1=WorkoutPlan(
+        coach_id = 3,
+        user_id = 12,
+        title = "Advanced Yoga Plan",
+        description = "An advanced yoga plan designed to improve flexibility, strength, and mindfulness through challenging poses.",
+        workout_days = 5)  
+    stretches=WorkoutPlan(
+        coach_id = 3,
+        user_id = 8,
+        title = "Basic Stretching Routine",
+        description = "A daily stretching routine aimed at improving overall flexibility and preventing injuries.",
+        workout_days = 7
+    )    
+    cardio1=WorkoutPlan(
+        coach_id = 2,
+        user_id = 6,
+        title = "Intermediate Cardio Plan",
+        description = "An intermediate plan to enhance cardiovascular strength with varied workouts.",
+        workout_days = 4
+    
+    )
+    cardio2=WorkoutPlan(
+        coach_id = 1,
+        user_id = 5,
+        title = "Beginner Cardio Plan",
+        description = "A beginner-friendly cardio plan focusing on building endurance over 4 weeks.",
+        workout_days = 3    
+    )
+    hypertrophe1=WorkoutPlan(
+        coach_id = 2,
+        user_id = 2,
+        title = "Advanced Hypertrophy Plan",
+        description = "An advanced hypertrophy plan with a focus on progressive overload and advanced training techniques.",
+        workout_days = 4
+    )
+    weight_loss1=WorkoutPlan(
+        coach_id = 5,
+        user_id = 10,
+        title = "Intermediate Weight Loss Plan",
+        description = "An intermediate weight loss plan with a mix of strength training and high-intensity interval training (HIIT).",
+        workout_days = 5
+    )
+    weight_loss2=WorkoutPlan(
+        coach_id = 5,
+        user_id = 9,
+        title = "Intermediate Weight Loss Plan",
+        description = "An intermediate weight loss plan with a mix of strength training and high-intensity interval training (HIIT).",
+        workout_days = 5
+    )
+    hypertrophe2=WorkoutPlan(
+        coach_id = 2,
+        user_id = 4,
+        title = "Advanced Hypertrophy Plan",
+        description = "An advanced hypertrophy plan with a focus on progressive overload and advanced training techniques.",
+        workout_days = 4)
+    stretches1=WorkoutPlan(
+        coach_id = 3,
+        user_id = 11,
+        title = "Athletic Stretching Routine",
+        description = "A stretching routine designed for athletes to enhance performance and recovery.",
+        workout_days = 5
+    )
+    db.session.add(cardio)
+    db.session.add(hypertrophe)
+    db.session.add(weight_loss)
+    db.session.add(yoga)
+    db.session.add(stretches)
+    db.session.add(cardio1)
+    db.session.add(cardio2)
+    db.session.add(hypertrophe1)
+    db.session.add(weight_loss1)
+    db.session.add(weight_loss2)
+    db.session.add(hypertrophe2)
+    db.session.add(stretches1)
+    db.session.commit()
+    
 
