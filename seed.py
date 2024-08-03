@@ -2,7 +2,7 @@ from models import *
 from config import *
 from app import app
 from sqlalchemy import text
-from datetime import datetime
+from datetime import datetime,date
 
 
  # cardio_plan = WorkoutPlan(name="Cardio Plan")
@@ -447,3 +447,722 @@ with app.app_context():
     for goal in goals:
         db.session.add(goal)
     db.session.commit()
+
+    ###nutrition logs
+
+    nutrition_log1 = NutritionLog(
+    user_id=1, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=300, 
+    protein=10, 
+    fat=5, 
+    carbs=50, 
+    notes="Oatmeal with berries"
+)
+    nutrition_log2 = NutritionLog(
+    user_id=1, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=600, 
+    protein=35, 
+    fat=30, 
+    carbs=20, 
+    notes="Chicken Caesar Salad"
+)
+    nutrition_log3 = NutritionLog(
+    user_id=1, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=700, 
+    protein=45, 
+    fat=15, 
+    carbs=70, 
+    notes="Grilled chicken with quinoa"
+)
+    nutrition_log4 = NutritionLog(
+    user_id=1, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=200, 
+    protein=10, 
+    fat=4, 
+    carbs=30, 
+    notes="Greek yogurt with honey"
+)
+
+    nutrition_log5 = NutritionLog(
+    user_id=2, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=400, 
+    protein=15, 
+    fat=20, 
+    carbs=35, 
+    notes="Avocado toast with egg"
+)
+    nutrition_log6 = NutritionLog(
+    user_id=2, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=500, 
+    protein=30, 
+    fat=20, 
+    carbs=40, 
+    notes="Turkey sandwich with spinach"
+)
+    nutrition_log7 = NutritionLog(
+    user_id=2, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=800, 
+    protein=40, 
+    fat=25, 
+    carbs=95, 
+    notes="Spaghetti with meatballs"
+)
+    nutrition_log8 = NutritionLog(
+    user_id=2, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=250, 
+    protein=25, 
+    fat=5, 
+    carbs=20, 
+    notes="Protein shake"
+)
+
+    nutrition_log9 = NutritionLog(
+    user_id=3, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=350, 
+    protein=10, 
+    fat=10, 
+    carbs=50, 
+    notes="Smoothie bowl"
+)
+    nutrition_log10 = NutritionLog(
+    user_id=3, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=450, 
+    protein=15, 
+    fat=15, 
+    carbs=50, 
+    notes="Veggie wrap with hummus"
+)
+    nutrition_log11 = NutritionLog(
+    user_id=3, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=750, 
+    protein=35, 
+    fat=20, 
+    carbs=80, 
+    notes="Salmon with sweet potato"
+)
+    nutrition_log12 = NutritionLog(
+    user_id=3, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=200, 
+    protein=6, 
+    fat=18, 
+    carbs=10, 
+    notes="Mixed nuts"
+)
+
+    nutrition_log13 = NutritionLog(
+    user_id=4, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=250, 
+    protein=20, 
+    fat=5, 
+    carbs=10, 
+    notes="Egg whites and spinach"
+)
+    nutrition_log14 = NutritionLog(
+    user_id=4, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=550, 
+    protein=40, 
+    fat=25, 
+    carbs=30, 
+    notes="Grilled chicken salad"
+)
+    nutrition_log15 = NutritionLog(
+    user_id=4, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=850, 
+    protein=45, 
+    fat=30, 
+    carbs=90, 
+    notes="Beef stir-fry with broccoli"
+)
+    nutrition_log16 = NutritionLog(
+    user_id=4, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=180, 
+    protein=15, 
+    fat=5, 
+    carbs=25, 
+    notes="Cottage cheese with fruit"
+)
+
+    nutrition_log17 = NutritionLog(
+    user_id=5, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=300, 
+    protein=12, 
+    fat=8, 
+    carbs=40, 
+    notes="Yogurt parfait"
+)
+    nutrition_log18 = NutritionLog(
+    user_id=5, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=600, 
+    protein=25, 
+    fat=20, 
+    carbs=75, 
+    notes="Quinoa and black bean bowl"
+)
+    nutrition_log19 = NutritionLog(
+    user_id=5, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=800, 
+    protein=35, 
+    fat=30, 
+    carbs=90, 
+    notes="Chicken and vegetable curry"
+)
+    nutrition_log20 = NutritionLog(
+    user_id=5, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=200, 
+    protein=6, 
+    fat=10, 
+    carbs=25, 
+    notes="Apple with peanut butter"
+)
+
+    nutrition_log21 = NutritionLog(
+    user_id=6, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=400, 
+    protein=20, 
+    fat=10, 
+    carbs=50, 
+    notes="Protein pancakes"
+)
+    nutrition_log22 = NutritionLog(
+    user_id=6, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=450, 
+    protein=35, 
+    fat=15, 
+    carbs=20, 
+    notes="Tuna salad"
+)
+    nutrition_log23 = NutritionLog(
+    user_id=6, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=700, 
+    protein=40, 
+    fat=20, 
+    carbs=80, 
+    notes="Shrimp and rice"
+)
+    nutrition_log24 = NutritionLog(
+    user_id=6, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=200, 
+    protein=5, 
+    fat=12, 
+    carbs=25, 
+    notes="Banana with almond butter"
+)
+
+    nutrition_log25 = NutritionLog(
+    user_id=7, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=350, 
+    protein=20, 
+    fat=5, 
+    carbs=50, 
+    notes="Smoothie with protein powder"
+)
+    nutrition_log26 = NutritionLog(
+    user_id=7, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=500, 
+    protein=30, 
+    fat=20, 
+    carbs=45, 
+    notes="Chicken wrap"
+)
+    nutrition_log27 = NutritionLog(
+    user_id=7, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=800, 
+    protein=35, 
+    fat=25, 
+    carbs=90, 
+    notes="Beef and broccoli stir-fry"
+)
+    nutrition_log28 = NutritionLog(
+    user_id=7, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=150, 
+    protein=10, 
+    fat=3, 
+    carbs=25, 
+    notes="Carrot sticks with hummus"
+)
+
+    nutrition_log29 = NutritionLog(
+    user_id=8, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=400, 
+    protein=18, 
+    fat=12, 
+    carbs=45, 
+    notes="Egg sandwich"
+)
+    nutrition_log30 = NutritionLog(
+    user_id=8, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=500, 
+    protein=25, 
+    fat=15, 
+    carbs=55, 
+    notes="Grilled chicken with brown rice"
+)
+    nutrition_log31 = NutritionLog(
+    user_id=8, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=700, 
+    protein=30, 
+    fat=20, 
+    carbs=85, 
+    notes="Pasta with marinara sauce"
+)
+    nutrition_log32 = NutritionLog(
+    user_id=8, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=180, 
+    protein=8, 
+    fat=4, 
+    carbs=20, 
+    notes="Fruit salad"
+)
+
+    nutrition_log33 = NutritionLog(
+    user_id=9, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=350, 
+    protein=15, 
+    fat=8, 
+    carbs=45, 
+    notes="Omelette with veggies"
+)
+    nutrition_log34 = NutritionLog(
+    user_id=9, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=600, 
+    protein=40, 
+    fat=20, 
+    carbs=35, 
+    notes="Chicken and quinoa bowl"
+)
+    nutrition_log35 = NutritionLog(
+    user_id=9, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=800, 
+    protein=35, 
+    fat=25, 
+    carbs=85, 
+    notes="Steak with potatoes"
+)
+    nutrition_log36 = NutritionLog(
+    user_id=9, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=200, 
+    protein=10, 
+    fat=8, 
+    carbs=25, 
+    notes="Cheese and crackers"
+)
+
+    nutrition_log37 = NutritionLog(
+    user_id=10, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=300, 
+    protein=15, 
+    fat=10, 
+    carbs=35, 
+    notes="Yogurt with granola"
+)
+    nutrition_log38 = NutritionLog(
+    user_id=10, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=500, 
+    protein=30, 
+    fat=15, 
+    carbs=50, 
+    notes="Chicken salad sandwich"
+)
+    nutrition_log39 = NutritionLog(
+    user_id=10, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=700, 
+    protein=40, 
+    fat=20, 
+    carbs=75, 
+    notes="Pork chops with applesauce"
+)
+    nutrition_log40 = NutritionLog(
+    user_id=10, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=150, 
+    protein=8, 
+    fat=5, 
+    carbs=20, 
+    notes="Trail mix"
+)
+
+    nutrition_log41 = NutritionLog(
+    user_id=11, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=350, 
+    protein=12, 
+    fat=15, 
+    carbs=35, 
+    notes="Bagel with cream cheese"
+)
+    nutrition_log42 = NutritionLog(
+    user_id=11, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=600, 
+    protein=35, 
+    fat=20, 
+    carbs=55, 
+    notes="Turkey and avocado wrap"
+)
+    nutrition_log43 = NutritionLog(
+    user_id=11, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=850, 
+    protein=40, 
+    fat=25, 
+    carbs=90, 
+    notes="Roast chicken with vegetables"
+)
+    nutrition_log44 = NutritionLog(
+    user_id=11, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=180, 
+    protein=8, 
+    fat=8, 
+    carbs=20, 
+    notes="Mixed fruit"
+)
+
+    nutrition_log45 = NutritionLog(
+    user_id=12, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.BREAKFAST, 
+    calory_intake=300, 
+    protein=10, 
+    fat=10, 
+    carbs=50, 
+    notes="Oatmeal with honey"
+)
+    nutrition_log46 = NutritionLog(
+    user_id=12, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.LUNCH, 
+    calory_intake=550, 
+    protein=25, 
+    fat=15, 
+    carbs=60, 
+    notes="Chicken and rice bowl"
+)
+    nutrition_log47 = NutritionLog(
+    user_id=12, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.DINNER, 
+    calory_intake=700, 
+    protein=35, 
+    fat=20, 
+    carbs=75, 
+    notes="Fish tacos"
+)
+    nutrition_log48 = NutritionLog(
+    user_id=12, 
+    date=date(2024, 8, 1), 
+    meal_type=MealType.SNACK, 
+    calory_intake=150, 
+    protein=5, 
+    fat=5, 
+    carbs=20, 
+    notes="Granola bar"
+)
+
+
+    nutrition_logs = [
+    nutrition_log1, nutrition_log2, nutrition_log3, nutrition_log4, nutrition_log5, nutrition_log6, nutrition_log7, nutrition_log8,
+    nutrition_log9, nutrition_log10, nutrition_log11, nutrition_log12, nutrition_log13, nutrition_log14, nutrition_log15, nutrition_log16,
+    nutrition_log17, nutrition_log18, nutrition_log19, nutrition_log20, nutrition_log21, nutrition_log22, nutrition_log23, nutrition_log24,
+    nutrition_log25, nutrition_log26, nutrition_log27, nutrition_log28, nutrition_log29, nutrition_log30, nutrition_log31, nutrition_log32,
+    nutrition_log33, nutrition_log34, nutrition_log35, nutrition_log36, nutrition_log37, nutrition_log38, nutrition_log39, nutrition_log40,
+    nutrition_log41, nutrition_log42, nutrition_log43, nutrition_log44, nutrition_log45, nutrition_log46, nutrition_log47, nutrition_log48]
+    
+
+    for nutrition_log in nutrition_logs:
+        db.session.add_all(nutrition_logs)
+    db.session.commit()
+
+
+    
+
+
+    progress_log1 = ProgressLog(
+    user_id=1, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=180, 
+    body_fat_percentage=20, 
+    muscle_mass=75, 
+    notes="Started new cardio routine"
+)
+    progress_log2 = ProgressLog(
+    user_id=1, 
+    date=date(2024, 8, 11),  #$Next week Sunday
+    weight=179, 
+    body_fat_percentage=19.8, 
+    muscle_mass=75.5, 
+    notes="Increased running distance"
+)
+    progress_log3 = ProgressLog(
+    user_id=2, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=165, 
+    body_fat_percentage=18, 
+    muscle_mass=68, 
+    notes="Started weight training"
+)
+    progress_log4 = ProgressLog(
+    user_id=2, 
+    date=date(2024, 8, 11),  #$Next week Sunday
+    weight=164, 
+    body_fat_percentage=17.8, 
+    muscle_mass=68.5, 
+    notes="Increased protein intake"
+)
+    progress_log5 = ProgressLog(
+    user_id=3, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=140, 
+    body_fat_percentage=22, 
+    muscle_mass=55, 
+    notes="Started yoga classes"
+)
+    progress_log6 = ProgressLog(
+    user_id=3, 
+    date=date(2024, 8, 11),  #$Next Week Sunday
+    weight=139, 
+    body_fat_percentage=21.8, 
+    muscle_mass=55.5, 
+    notes="Improved flexibility"
+)
+    progress_log7 = ProgressLog(
+    user_id=4, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=190, 
+    body_fat_percentage=25, 
+    muscle_mass=80, 
+    notes="Started HIIT workouts"
+)
+    progress_log8 = ProgressLog(
+    user_id=4, 
+    date=date(2024, 8, 11),  #$Next Week Sunday
+    weight=189, 
+    body_fat_percentage=24.8, 
+    muscle_mass=80.5, 
+    notes="Increased workout intensity"
+)
+    progress_log9 = ProgressLog(
+    user_id=5, 
+    date=date(2024, 8, 4), #$On Sunday August 4, 2024
+    weight=175, 
+    body_fat_percentage=19, 
+    muscle_mass=70, 
+    notes="Started swimming sessions"
+)
+    progress_log10 = ProgressLog(
+    user_id=5, 
+    date=date(2024, 8, 11),  # Next Week Sunday 
+    weight=174, 
+    body_fat_percentage=18.8, 
+    muscle_mass=70.5, 
+    notes="Improved swimming technique"
+)
+    progress_log11 = ProgressLog(
+    user_id=6, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=160, 
+    body_fat_percentage=21, 
+    muscle_mass=65, 
+    notes="Started cycling"
+)
+    progress_log12 = ProgressLog(
+    user_id=6, 
+    date=date(2024, 8, 11),  # Next Week Sunday
+    weight=159, 
+    body_fat_percentage=20.8, 
+    muscle_mass=65.5, 
+    notes="Increased cycling distance"
+)
+    progress_log13 = ProgressLog(
+    user_id=7, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=185, 
+    body_fat_percentage=22, 
+    muscle_mass=78, 
+    notes="Started Pilates"
+)
+    progress_log14 = ProgressLog(
+    user_id=7, 
+    date=date(2024, 8, 11),  # Next Week Sunday 
+    weight=184, 
+    body_fat_percentage=21.8, 
+    muscle_mass=78.5, 
+    notes="Improved core strength"
+)
+    progress_log15 = ProgressLog(
+    user_id=8, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=200, 
+    body_fat_percentage=26, 
+    muscle_mass=85, 
+    notes="Started strength training"
+)
+    progress_log16 = ProgressLog(
+    user_id=8, 
+    date=date(2024, 8, 11),  # Next Week Sunday
+    weight=198, 
+    body_fat_percentage=25.8, 
+    muscle_mass=85.5, 
+    notes="Increased weights"
+)
+    progress_log17 = ProgressLog(
+    user_id=9, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=155, 
+    body_fat_percentage=20, 
+    muscle_mass=72, 
+    notes="Started running program"
+)
+    progress_log18 = ProgressLog(
+    user_id=9, 
+    date=date(2024, 8, 11),  # Next Week Sunday 
+    weight=154, 
+    body_fat_percentage=19.8, 
+    muscle_mass=72.5, 
+    notes="Increased running speed"
+)
+    progress_log19 = ProgressLog(
+    user_id=10, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=170, 
+    body_fat_percentage=18, 
+    muscle_mass=68, 
+    notes="Started boxing training"
+)
+    progress_log20 = ProgressLog(
+    user_id=10, 
+    date=date(2024, 8, 11),  # Next Week Sunday
+    weight=168, 
+    body_fat_percentage=17.8, 
+    muscle_mass=68.5, 
+    notes="Improved boxing technique"
+)
+    progress_log21 = ProgressLog(
+    user_id=11, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=180, 
+    body_fat_percentage=23, 
+    muscle_mass=76, 
+    notes="Started mixed martial arts"
+)
+    progress_log22 = ProgressLog(
+    user_id=11, 
+    date=date(2024, 8, 11),  # Next  Week Sunday 
+    weight=179, 
+    body_fat_percentage=22.8, 
+    muscle_mass=76.5, 
+    notes="Increased endurance"
+)
+    progress_log23 = ProgressLog(
+    user_id=12, 
+    date=date(2024, 8, 4),  #$On Sunday August 4, 2024
+    weight=145, 
+    body_fat_percentage=21, 
+    muscle_mass=60, 
+    notes="Started resistance training"
+)
+    progress_log24 = ProgressLog(
+    user_id=12, 
+    date=date(2024, 8, 11),  # Next Week Sunday 
+    weight=144, 
+    body_fat_percentage=20.8, 
+    muscle_mass=60.5, 
+    notes="Improved training regimen"
+)
+
+    progress_logs = [
+    progress_log1, progress_log2, progress_log3, progress_log4, progress_log5, 
+    progress_log6, progress_log7, progress_log8, progress_log9, progress_log10,
+    progress_log11, progress_log12, progress_log13, progress_log14, progress_log15,
+    progress_log16, progress_log17, progress_log18, progress_log19, progress_log20,
+    progress_log21, progress_log22, progress_log23, progress_log24]
+
+
+
+    for progress_log in progress_logs:
+        db.session.add(progress_log)
+    db.session.commit()
+

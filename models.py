@@ -149,12 +149,12 @@ class Goal(db.Model,SerializerMixin):
     achieved=db.Column(db.Boolean ,default=False,nullable=False)
     user=db.relationship('User',back_populates='goals')
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'title': self.title,
-            'description': self.description,
-            'target_date': self.target_date,
-            'achieved': self.achieved
-        }
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         'user_id': self.user_id,
+    #         'title': self.title,
+    #         'description': self.description,
+    #         'target_date': self.target_date,
+    #         'achieved': self.achieved
+    #     }
