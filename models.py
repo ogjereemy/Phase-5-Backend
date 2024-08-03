@@ -15,9 +15,38 @@ class MealType(PyEnum):
         DINNER= 'dinner'
         SNACK = 'snack'
 
+class Coach(db.Model,SerializerMixin):
+    __tablename__="coaches"
+    serialize_rules = ('-users',) 
+    id= db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    email= db.Column(db.String(100),nullable=False)
+    _password_hash =db.Column(db.String,nullable =False)
+    photo =db.Column(db.String(255), nullable=False )
+    bio = db.Column(db.String,nullable=False)
+    specialities = db.Column(db.String,nullable=False)
+    is_admin = db.Column(db.Boolean, default=False, nullable=False)
+    users=db.relationship('User',back_populates='coach')
+    workout_plans=db.relationship('WorkoutPlan',back_populates='coach')
+    workouts=db.relationship('Workout',back_populates='coach')
+    @hybrid_property
+    def password_hash(self):
+        return self._password_hash
+    
+    @password_hash.setter
+    def password_hash(self,password):
+        password_hash=bcrypt.generate_password_hash(password.encode('utf-8'))
+        self._password_hash=password_hash.decode('utf-8')
+    def authenticate(self,password):
+        return bcrypt.check_password_hash(
+            self._password_hash,password.encode('utf-8')
+        )
+
+
 
 class User(db.Model,SerializerMixin):
     __tablename__="users"
+    serialize_rules = ('-coach',) 
     id= db.Column(db.Integer, primary_key=True)
     username= db.Column(db.String(50), unique=True, nullable=False)
     email= db.Column(db.String(100),nullable=False)
@@ -43,31 +72,7 @@ class User(db.Model,SerializerMixin):
             self._password_hash,password.encode('utf-8')
         )
     
-class Coach(db.Model,SerializerMixin):
-    __tablename__="coaches"
-    id= db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    email= db.Column(db.String(100),nullable=False)
-    _password_hash =db.Column(db.String,nullable =False)
-    photo =db.Column(db.String(255), nullable=False )
-    bio = db.Column(db.String,nullable=False)
-    specialities = db.Column(db.String,nullable=False)
-    is_admin = db.Column(db.Boolean, default=False, nullable=False)
-    users=db.relationship('User',back_populates='coach')
-    workout_plans=db.relationship('WorkoutPlan',back_populates='coach')
-    workouts=db.relationship('Workout',back_populates='coach')
-    @hybrid_property
-    def password_hash(self):
-        return self._password_hash
-    
-    @password_hash.setter
-    def password_hash(self,password):
-        password_hash=bcrypt.generate_password_hash(password.encode('utf-8'))
-        self._password_hash=password_hash.decode('utf-8')
-    def authenticate(self,password):
-        return bcrypt.check_password_hash(
-            self._password_hash,password.encode('utf-8')
-        )
+
 
 class WorkoutPlan(db.Model,SerializerMixin):
     __tablename__="workout_plans"
@@ -100,8 +105,8 @@ class Exercise(db.Model,SerializerMixin):
     workout_id=db.Column(db.Integer,db.ForeignKey('workouts.id'),nullable=False)
     name=db.Column(db.String(50),nullable=False)
     sets=db.Column(db.Integer,nullable=False)
-    reps=db.Column(db.Integer,nullable=False)
-    weight=db.Column(db.Integer,nullable=False)
+    reps=db.Column(db.String,nullable=False) ## can also be used to show duration
+    weight=db.Column(db.String,nullable=False)
     description=db.Column(db.String,nullable=False)
     workout=db.relationship('Workout',back_populates='exercises1')
 
