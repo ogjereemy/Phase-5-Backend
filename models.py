@@ -46,7 +46,9 @@ class Coach(db.Model,SerializerMixin):
 
 class User(db.Model,SerializerMixin):
     __tablename__="users"
-    serialize_rules = ('-coach',) 
+    # serialize_rules = ('-coach','-goals') 
+    serialize_rules = ('-coach', '-goals', '-nutrition_logs', '-workouts', '-workout_plans', '-progress_logs', '-_password_hash')
+ 
     id= db.Column(db.Integer, primary_key=True)
     username= db.Column(db.String(50), unique=True, nullable=False)
     email= db.Column(db.String(100),nullable=False)
@@ -138,6 +140,7 @@ class NutritionLog(db.Model,SerializerMixin): ##update nutrition log for every m
 
 class Goal(db.Model,SerializerMixin):
     __tablename__="goals"
+    # serializes_rules=('-user',)
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     title=db.Column(db.String(50),nullable=False)
@@ -145,3 +148,13 @@ class Goal(db.Model,SerializerMixin):
     target_date=db.Column(db.Date,nullable=False)
     achieved=db.Column(db.Boolean ,default=False,nullable=False)
     user=db.relationship('User',back_populates='goals')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'title': self.title,
+            'description': self.description,
+            'target_date': self.target_date,
+            'achieved': self.achieved
+        }

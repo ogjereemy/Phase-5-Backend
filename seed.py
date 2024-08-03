@@ -2,6 +2,7 @@ from models import *
 from config import *
 from app import app
 from sqlalchemy import text
+from datetime import datetime
 
 
  # cardio_plan = WorkoutPlan(name="Cardio Plan")
@@ -228,3 +229,221 @@ with app.app_context():
     db.session.add(nattie)
     db.session.commit()
     print('Users added successfully.')
+
+
+    ##goals
+
+
+    goal1 = Goal(
+    user_id=1,  
+    title="Increase Cardio Endurance",
+    description="Aim to improve your 5K run time by 2 minutes over the next 3 months.",
+    target_date=date(2024, 11, 1),
+    achieved=False
+    )
+
+    goal2 = Goal(
+    user_id=1,  
+    title="Build Upper Body Strength",
+    description="Increase your bench press weight by 20 pounds within the next 6 weeks.",
+    target_date=date(2024, 9, 15),
+    achieved=False
+    )
+
+
+    goal3 = Goal(
+    user_id=2,  
+    title="Improve Flexibility",
+    description="Achieve a full split by incorporating daily stretching routines for the next 2 months.",
+    target_date=date(2024, 10, 30),
+    achieved=False
+    )
+
+    goal4 = Goal(
+    user_id=2,  
+    title="Enhance Core Stability",
+    description="Hold a plank for 2 minutes by the end of this month.",
+    target_date=date(2024, 8, 31),
+    achieved=False
+    )
+
+
+    goal5 = Goal(
+    user_id=3,  
+    title="Reduce Body Fat Percentage",
+    description="Decrease body fat by 5% over the next 4 months with a balanced diet and regular exercise.",
+    target_date=date(2024, 11, 15),
+    achieved=False
+    )
+
+    goal6 = Goal(
+    user_id=3,  
+    title="Increase Running Speed",
+    description="Improve your 1-mile run time by 30 seconds within 6 weeks.",
+    target_date=date(2024, 9, 30),
+    achieved=False
+    )
+
+
+    goal7 = Goal(
+    user_id=4,  
+    title="Improve Flexibility",
+    description="Touch your toes comfortably within 8 weeks by performing daily stretching exercises.",
+    target_date=date(2024, 10, 15),
+    achieved=False
+    )
+
+    goal8 = Goal(
+    user_id=4,  
+    title="Increase Deadlift Weight",
+    description="Add 30 pounds to your current deadlift weight in the next 3 months.",
+    target_date=date(2024, 11, 1),
+    achieved=False
+    )
+
+
+    goal9 = Goal(
+    user_id=5,  
+    title="Enhance Agility",
+    description="Improve your agility by incorporating ladder drills twice a week for 2 months.",
+    target_date=date(2024, 10, 10),
+    achieved=False
+    )
+
+    goal10 = Goal(
+    user_id=5,  
+    title="Strengthen Legs",
+    description="Increase your squat weight by 25 pounds within 2 months.",
+    target_date=date(2024, 10, 31),
+    achieved=False
+    )
+
+
+    goal11 = Goal(
+    user_id=6,  
+    title="Improve Cardio Fitness",
+    description="Run 20 miles per week for the next 4 weeks.",
+    target_date=date(2024, 8, 31),
+    achieved=False
+    )
+
+    goal12 = Goal(
+    user_id=6,  # Liam Anderson's user_id
+    title="Enhance Shoulder Strength",
+    description="Increase your shoulder press weight by 15 pounds in 6 weeks.",
+    target_date=date(2024, 9, 15),
+    achieved=False
+    )
+
+
+    goal13 = Goal(
+    user_id=7,  
+    title="Boost Running Distance",
+    description="Run 10 miles in a single session within the next 8 weeks.",
+    target_date=date(2024, 10, 30),
+    achieved=False
+    )
+
+    goal14 = Goal(
+    user_id=7,  
+    title="Improve Back Strength",
+    description="Increase your deadlift by 40 pounds in 3 months.",
+    target_date=date(2024, 11, 15),
+    achieved=False
+    )
+
+
+    goal15 = Goal(
+    user_id=8,  
+    title="Increase Bench Press Weight",
+    description="Add 15 pounds to your bench press in 6 weeks.",
+    target_date=date(2024, 9, 30),
+    achieved=False
+    )
+
+    goal16 = Goal(
+    user_id=8, 
+    title="Enhance Flexibility",
+    description="Perform splits on both sides within 2 months.",
+    target_date=date(2024, 10, 15),
+    achieved=False
+)
+
+
+    goal17 = Goal(
+    user_id=9,  
+    title="Improve Running Endurance",
+    description="Run a half-marathon distance (13.1 miles) in the next 3 months.",
+    target_date=date(2024, 11, 15),
+    achieved=False
+    )
+
+    goal18 = Goal(
+    user_id=9,  
+    title="Build Core Strength",
+    description="Perform 50 sit-ups in a single set by the end of this month.",
+    target_date=date(2024, 8, 31),
+    achieved=False
+    )
+
+
+    goal19 = Goal(
+    user_id=10,  
+    title="Increase Cardio Capacity",
+    description="Complete a 10K run in under 50 minutes within 2 months.",
+    target_date=date(2024, 10, 1),
+    achieved=False
+    )
+
+    goal20 = Goal(
+    user_id=10,  
+    title="Strengthen Arm Muscles",
+    description="Increase your bicep curl weight by 20 pounds over the next 4 weeks.",
+    target_date=date(2024, 9, 10),
+    achieved=False
+    )
+
+
+    goal21 = Goal(
+    user_id=11, 
+    title="Improve Overall Strength",
+    description="Achieve personal bests in squat, deadlift, and bench press within 3 months.",
+    target_date=date(2024, 11, 1),
+    achieved=False
+)
+
+    goal22 = Goal(
+    user_id=11, 
+    title="Enhance Flexibility",
+    description="Increase your flexibility with daily stretching to reach toes comfortably within 6 weeks.",
+    target_date=date(2024, 9, 15),
+    achieved=False
+    )
+
+
+    goal23 = Goal(
+    user_id=12,  
+    title="Increase Endurance",
+    description="Complete a 5K run in under 30 minutes within the next month.",
+    target_date=date(2024, 8, 30),
+    achieved=False
+    )
+
+    goal24 = Goal(
+    user_id=12,  
+    title="Build Strength",
+    description="Increase your maximum pull-ups by 5 in the next 2 months.",
+    target_date=date(2024, 10, 15),
+    achieved=False
+)
+
+
+    goals = [
+    goal1, goal2, goal3, goal4, goal5, goal6, goal7, goal8, goal9, goal10,
+    goal11, goal12, goal13, goal14, goal15, goal16, goal17, goal18, goal19, goal20,
+    goal21, goal22, goal23, goal24]
+    
+
+    for goal in goals:
+        db.session.add(goal)
+    db.session.commit()
