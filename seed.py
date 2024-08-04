@@ -1154,7 +1154,7 @@ with app.app_context():
         db.session.add(progress_log)
     db.session.commit()
 
-    ## Workout_Plan
+    ## Workout_Plans
 
     cardio=WorkoutPlan(
         coach_id = 1,
@@ -1168,14 +1168,14 @@ with app.app_context():
         user_id = 7,
         title = "Beginner Hypertrophy Plan",
         description = "A beginner hypertrophy plan designed to build muscle mass with basic exercises.",
-        workout_days = 4
+        workout_days = 3
     )
     weight_loss=WorkoutPlan(
         coach_id = 5,
         user_id = 5,
         title = "Basic Weight Loss Plan",
         description = "A basic weight loss plan focused on cardio and full-body workouts to help shed excess fat.",
-        workout_days = 4
+        workout_days = 3
     )
     yoga=WorkoutPlan(
         coach_id = 3,
@@ -1198,7 +1198,7 @@ with app.app_context():
         workout_days = 7
     )    
     cardio1=WorkoutPlan(
-        coach_id = 2,
+        coach_id = 4,
         user_id = 6,
         title = "Intermediate Cardio Plan",
         description = "An intermediate plan to enhance cardiovascular strength with varied workouts.",
@@ -1206,7 +1206,7 @@ with app.app_context():
     
     )
     cardio2=WorkoutPlan(
-        coach_id = 1,
+        coach_id = 6,
         user_id = 5,
         title = "Beginner Cardio Plan",
         description = "A beginner-friendly cardio plan focusing on building endurance over 4 weeks.",
@@ -1217,34 +1217,28 @@ with app.app_context():
         user_id = 2,
         title = "Advanced Hypertrophy Plan",
         description = "An advanced hypertrophy plan with a focus on progressive overload and advanced training techniques.",
-        workout_days = 4
+        workout_days = 3
     )
     weight_loss1=WorkoutPlan(
         coach_id = 5,
         user_id = 10,
         title = "Intermediate Weight Loss Plan",
         description = "An intermediate weight loss plan with a mix of strength training and high-intensity interval training (HIIT).",
-        workout_days = 5
+        workout_days = 3
     )
     weight_loss2=WorkoutPlan(
         coach_id = 5,
         user_id = 9,
-        title = "Intermediate Weight Loss Plan",
-        description = "An intermediate weight loss plan with a mix of strength training and high-intensity interval training (HIIT).",
-        workout_days = 5
+        title = "Advanced Weight Loss Plan",
+        description = "An advanced weight loss plan focusing on full-body strength training and high-intensity interval training (HIIT). ",
+        workout_days = 3
     )
-    hypertrophe2=WorkoutPlan(
-        coach_id = 2,
-        user_id = 4,
-        title = "Advanced Hypertrophy Plan",
-        description = "An advanced hypertrophy plan with a focus on progressive overload and advanced training techniques.",
-        workout_days = 4)
     stretches1=WorkoutPlan(
         coach_id = 3,
         user_id = 11,
         title = "Athletic Stretching Routine",
         description = "A stretching routine designed for athletes to enhance performance and recovery.",
-        workout_days = 5
+        workout_days = 4
     )
     db.session.add(cardio)
     db.session.add(hypertrophe)
@@ -1256,8 +1250,402 @@ with app.app_context():
     db.session.add(hypertrophe1)
     db.session.add(weight_loss1)
     db.session.add(weight_loss2)
-    db.session.add(hypertrophe2)
     db.session.add(stretches1)
+    db.session.add(yoga1)
+    
     db.session.commit()
+    
+
+    ###workouts
+
+
+    ## cardio workouts
+    
+    
+    hiit_circuit_1 = Workout(
+    workout_plan_id=6,
+    user_id=6,  
+    coach_id=4, 
+    title="HIIT Circuit 1",
+    day_of_week="Monday,Wednesday,Friday,Saturday",
+    exercises="Burpees (1 minute), Jumping Jacks (1 minute), Mountain Climbers (1 minute), Rest (1 minute), Repeat (4 sets)"
+)
+
+    hiit_circuit_2 = Workout(
+    workout_plan_id=6,
+    user_id=6,  
+    coach_id=4, 
+    title="HIIT Circuit 2",
+    day_of_week="Monday,Wednesday,Friday,Saturday",
+    exercises="Jump Squats (1 minute), High Knees (1 minute), Lunges (1 minute), Rest (1 minute), Repeat (4 sets)"
+)
+
+    steady_state_cardio = Workout(
+    workout_plan_id=7,
+    user_id=5,  
+    coach_id=6, 
+    title="Steady-State Cardio",
+    day_of_week="Tuesday,Thursday,Saturday",
+    exercises="Running or Jogging (30-45 minutes), Cycling (30-45 minutes), Rowing (30 minutes), Elliptical Machine (30-45 minutes)"
+)
+
+    tabata_training = Workout(
+    workout_plan_id=6,
+    user_id=6,  
+    coach_id=4, 
+    title="Tabata Training",
+    day_of_week="Monday,Tuesday,Wednesday,Thursday",
+    exercises="Sprints (20 seconds), Rest (10 seconds), Repeat (8 sets), Jumping Squats (20 seconds), Rest (10 seconds), Repeat (8 sets)"
+)
+
+    cardio_circuits = Workout(
+    workout_plan_id=1,
+    user_id=1,  
+    coach_id=1, 
+    title="Cardio Circuits",
+    day_of_week="Monday,Tuesday,Wednesday,Thursday,Friday",
+    exercises="Jumping Rope (1 minute), High Knees (1 minute), Jumping Jacks (1 minute), Rest (1 minute), Repeat Circuit 1, Running in Place (1 minute), Butt Kicks (1 minute), Mountain Climbers (1 minute), Rest (1 minute), Repeat Circuit 2"
+)
+
+    jump_rope = Workout(
+    workout_plan_id=1,
+    user_id=1, 
+    coach_id=1, 
+    title="Jump Rope",
+    day_of_week="Monday,Tuesday,Wednesday,Thursday,Friday",
+    exercises="Basic Jump Rope (10 minutes), Interval Jump Rope (20 minutes), Alternate Foot Jumping (1 minute), Double Unders (1 minute), Side-to-Side Jumps (1 minute)"
+)
+
+    hiking = Workout(
+    workout_plan_id=1,
+    user_id=1, 
+    coach_id=1, 
+    title="Hiking",
+    day_of_week="Monday,Tuesday,Wednesday,Thursday,Friday",
+    exercises="Hill Hike (45-60 minutes), Trail Hike (1-2 hours), Uphill Hiking (30 minutes), Downhill Hiking (30 minutes), Steep Inclines (30 minutes), Trail Exploration (1-2 hours)"
+)
+
+    stair_climbing = Workout(
+    workout_plan_id=7,
+    user_id=5,  
+    coach_id=6, 
+    title="Stair Climbing",
+    day_of_week="Tuesday,Thursday,Saturday",
+    exercises="Stair Climb (20-30 minutes), Stair Intervals (20 minutes), Basic Stair Climbing (10 minutes), Step-Ups (10 minutes), High Knees on Stairs (10 minutes), Fast Steps (10 minutes)"
+)
+
+    bodyweight_cardio = Workout(
+    workout_plan_id=6,
+    user_id=6, 
+    coach_id=4, 
+    title="Bodyweight Cardio",
+    day_of_week="Monday,Wednesday,Friday,Saturday",
+    exercises="Burpees (1 minute), High Knees (1 minute), Jumping Jacks (1 minute), Mountain Climbers (1 minute), Rest (1 minute), Repeat Circuit, Jump Squats (30 seconds), Skaters (30 seconds), Jump Lunges (30 seconds), Rest (30 seconds), Repeat Intervals"
+)
+
+    elliptical_trainer = Workout(
+    workout_plan_id=7,
+    user_id=5, 
+    coach_id=6, 
+    title="Elliptical Trainer",
+    day_of_week="Monday,Thursday,Saturday",
+    exercises="Steady-State Elliptical (30-45 minutes), Elliptical Intervals (20 minutes), Forward Elliptical Stride (10 minutes), Backward Elliptical Stride (10 minutes), High-Resistance Intervals (10 minutes), Low-Resistance Endurance (10 minutes), Incline Adjustments (10 minutes)"
+)
+
+    recumbent_bike = Workout(
+    workout_plan_id=6,
+    user_id=6,  
+    coach_id=4,
+    title="Recumbent Bike",
+    day_of_week="Tuesday,Friday,Thursday,Monday",
+    exercises="Steady-State Recumbent Bike (30-45 minutes), Recumbent Bike Intervals (20 minutes), Steady Cycling (10 minutes), High-Resistance Intervals (10 minutes), Low-Resistance Endurance (10 minutes), Hill Climb Simulation (20-30 minutes)"
+)
+
+    forest_biking = Workout(
+    workout_plan_id=7,
+    user_id=5,  
+    coach_id=6, 
+    title="Forest Biking",
+    day_of_week="Wednesday,Saturday,Sunday",
+    exercises="Trail Ride (45-60 minutes), Interval Trail Riding (30-45 minutes), Technical Trail Ride (30-45 minutes), Trail Cycling (30 minutes), Interval Trail Riding (30 minutes), Technical Trail Navigation (30 minutes), Hill Climbing on Trails (30 minutes)"
+)
+
+
+
+    ##hypertrophe workouts
+
+    chest_and_triceps = Workout(
+    workout_plan_id=2,
+    user_id=7,
+    coach_id=1,
+    title="Chest and Triceps",
+    day_of_week="Monday,Tuesday,Saturday",
+    exercises="Bench Press, Incline Dumbbell Press, Chest Flyes, Tricep Dips, Tricep Pushdowns"
+)
+
+    back_and_biceps = Workout(
+    workout_plan_id=2,
+    user_id=7,
+    coach_id=1,
+    title="Back and Biceps",
+    day_of_week="Sunday,Thursday,Friday",
+    exercises="Deadlift, Bent-Over Rows, Pull-Ups, Barbell Curls, Hammer Curls"
+)
+
+    legs_workout = Workout(
+    workout_plan_id=2,
+    user_id=7,
+    coach_id=1,
+    title="Legs",
+    day_of_week="Monday,Thursday,Friday",
+    exercises="Squats, Leg Press, Lunges, Leg Curls, Calf Raises"
+)
+
+    shoulders_and_abs = Workout(
+    workout_plan_id=2,
+    user_id=7,
+    coach_id=1,
+    title="Shoulders and Abs",
+    day_of_week="Wednesday,Thursday,Saturday",
+    exercises="Overhead Press, Lateral Raises, Front Raises, Russian Twists, Plank"
+)
+
+    
+
+    chest_and_back = Workout(
+    workout_plan_id=8,
+    user_id=2,
+    coach_id=2,
+    title="Chest and Back",
+    day_of_week="Monday,Wednesday,Friday",
+    exercises="Dumbbell Pullover, Chest Press Machine, Single-Arm Dumbbell Row, T-Bar Row, Decline Push-Ups"
+)
+
+    legs_and_shoulders = Workout(
+    workout_plan_id=8,
+    user_id=2,
+    coach_id=2,
+    title="Legs and Shoulders",
+    day_of_week="Tuesday,Thursday,Saturday",
+    exercises="Bulgarian Split Squats, Leg Extensions, Seated Calf Raises, Arnold Press, Shrugs"
+)
+
+    full_body = Workout(
+    workout_plan_id=8,
+    user_id=2,
+    coach_id=2,
+    title="Full Body",
+    day_of_week="Sunday,Thursday,Monday",
+    exercises="Clean and Press, Goblet Squats, Kettlebell Swings, Renegade Rows, Medicine Ball Slams"
+)
+
+
+
+    ## yoga  workouts
+    beginner = Workout(
+    workout_plan_id=4,
+    user_id=3,
+    coach_id=3,
+    title="Beginner's Flow",
+    day_of_week="Monday , Wednesday ,Friday",
+    exercises="Cat-Cow Pose, Downward-Facing Dog, Child/'s Pose, Cobra Pose, Warrior I Pose"
+)
+
+    intermediate = Workout(
+    workout_plan_id=4,
+    user_id=3,
+    coach_id=3,
+    title="Intermediate Flow",
+    day_of_week="Wednesday ,Friday, Monday",
+    exercises="Sun Salutation A, Warrior II Pose, Triangle Pose, Extended Side Angle Pose, Boat Pose"
+)
+
+    advanced = Workout(
+    workout_plan_id=12,
+    user_id=12,
+    coach_id=3,
+    title="Advanced Flow",
+    day_of_week="Monday,Tuesday ,Wednesday,Thursday,Friday",
+    exercises="Crow Pose, Headstand, Forearm Stand, King Pigeon Pose, Wheel Pose"
+)
+
+    flexibility = Workout(
+    workout_plan_id=4,
+    user_id=3,
+    coach_id=3,
+    title="Flexibility and Balance Flow",
+    day_of_week="Tuesday,Thursday,Saturday",
+    exercises="Half Moon Pose, Tree Pose, Dancer’s Pose, Standing Forward Bend, Pigeon Pose"
+)
+
+    core = Workout(
+    workout_plan_id=12,
+    user_id=12,
+    coach_id=3,
+    title="Core Strength Flow",
+    day_of_week="Monday,Tuesday,Wednesday,Thursday,Friday",
+    exercises="Plank Pose, Side Plank Pose, Boat Pose, Crow Pose, Dolphin Plank Pose"
+)
+
+    recovery = Workout(
+    workout_plan_id=4,
+    user_id=3,
+    coach_id=3,
+    title="Relaxation and Recovery Flow",
+    day_of_week="Saturday ,Wednesday ,Friday",
+    exercises="Legs-Up-the-Wall Pose, Reclining Bound Angle Pose, Supine Twist, Corpse Pose, Happy Baby Pose"
+)
+ 
+##stretches    
+
+    daily_routine_stretch = Workout(
+    workout_plan_id=5,
+    user_id=8,
+    coach_id=3,
+    title="Daily Routine Stretch",
+    day_of_week="Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday",
+    exercises="Forward Tilt, Backward Tilt, Side Tilt, Side Rotation, Neck Extension, Chin Tucks, Standing Bicep Stretch, Wall Bicep Stretch, Doorway Bicep Stretch, Seated Bicep Stretch, Overhead Bicep Stretch, Cat-Cow Stretch, Cobra Stretch, Child's Pose, Seated Forward Bend, Standing Side Stretch, Cross-Body Shoulder Stretch, Overhead Tricep Stretch, Shoulder Blade Squeeze, Thread the Needle, Doorway Stretch, Knee-to-Chest Stretch, Quadriceps Stretch, Hamstring Stretch, Standing Hamstring Stretch, Butterfly Stretch, Side Lunge Stretch, Seated Glute Stretch, Lying Glute Stretch, Standing Figure-Four Stretch, Standing Calf Stretch, Seated Calf Stretch, Dynamic Hamstring Stretch, Hamstring Stretch on a Chair, Hamstring Stretch with Foam Roller"
+)
+
+    athletic_routine_stretch = Workout(
+    workout_plan_id=11,
+    user_id=11,
+    coach_id=3,
+    title="Athletic Routine Stretch",
+    day_of_week="Monday,Wednesday,Friday,Sunday",
+    exercises="Levator Scapulae Stretch, Upper Trapezius Stretch, Scalene Stretch, Isometric Neck Exercises (Front of Neck, Back of Neck, Sides of Neck), Cross-Body Arm Stretch, Towel Bicep Stretch, Spinal Twist, Bridge Pose, Pigeon Pose, Kneeling Side Stretch, Extended Triangle Pose, Eagle Arms (Garudasana), Child's Pose with Shoulder Stretch, Cow-Face Pose (Gomukhasana) Arms, Shoulder Circles, Lat Stretch at a Wall, Cobra Stretch (II), Seated Forward Hinge, Sphinx Pose, Spinal Twist (II), Lying Quad Stretch, Hip Flexor Stretch, Pigeon Pose (II), Seated Thigh Stretch, Supine Glute Stretch, Seated Glute Stretch (II), Pigeon Pose (III), Downward Dog Stretch, Calf Stretch on a Step, Wall Calf Stretch with Bent Knee, Standing Forward Bend with Bent Knee"
+)
+
+## weight loss
+    full_body_hiit = Workout(
+    workout_plan_id=3,
+    user_id=5,
+    coach_id=5,
+    title="Full Body HIIT",
+    day_of_week="Wednesday,Thursday,Sunday",
+    exercises="Jumping Jacks: 30-45 seconds, 3 sets; Burpees: 15-20 reps, 3 sets; Mountain Climbers: 30-45 seconds, 3 sets; High Knees: 30-45 seconds, 3 sets; Plank: 30-60 seconds, 3 sets"
+)
+
+    lower_body_burn = Workout(
+    workout_plan_id=3,
+    user_id=5,
+    coach_id=5,
+    title="Lower Body Burn",
+    day_of_week="Tuesday,Thursday,Saturday",
+    exercises="Squats: 15-20 reps, 3 sets; Lunges: 12-15 reps each leg, 3 sets; Glute Bridges: 15-20 reps, 3 sets; Step-Ups: 12-15 reps each leg, 3 sets; Calf Raises: 20-25 reps, 3 sets"
+)
+
+    upper_body_blast = Workout(
+    workout_plan_id=3,
+    user_id=5,
+    coach_id=5,
+    title="Upper Body Blast",
+    day_of_week="Monday,Wednesday,Friday",
+    exercises="Push-Ups: 10-15 reps, 3 sets; Dumbbell Rows: 12-15 reps, 3 sets; Shoulder Press: 10-12 reps, 3 sets; Bicep Curls: 12-15 reps, 3 sets; Tricep Dips: 10-15 reps, 3 sets"
+)
+
+    core_conditioning = Workout(
+    workout_plan_id=3,
+    user_id=5,
+    coach_id=5,
+    title="Core Conditioning",
+    day_of_week="Wednesday,Thursday,Saturday",
+    exercises="Bicycle Crunches: 20-30 reps, 3 sets; Russian Twists: 20-30 reps, 3 sets; Plank with Shoulder Taps: 20-30 taps, 3 sets; Leg Raises: 15-20 reps, 3 sets; Side Plank: 30-45 seconds each side, 3 sets"
+)
+
+
+    cardio_circuit = Workout(
+    workout_plan_id=9,
+    user_id=10,
+    coach_id=5,
+    title="Cardio Circuit",
+    day_of_week="Monday,Wednesday,Friday",  
+    exercises="Jump Rope: 1-2 minutes, 3 sets; Box Jumps: 10-15 reps, 3 sets; Skaters: 30-45 seconds, 3 sets; Battle Ropes: 30-45 seconds, 3 sets; Treadmill Sprints: 30 seconds on, 30 seconds off, 5-10 sets"
+)
+
+    upper_body_circuit = Workout(
+    workout_plan_id=9,
+    user_id=10,
+    coach_id=5,
+    title="Upper Body Circuit",
+    day_of_week="Tuesday,Thursday,Saturday",  
+    exercises="Dumbbell Chest Press: 12-15 reps, 3 sets; Dumbbell Flyes: 12-15 reps, 3 sets; Lat Pulldowns: 12-15 reps, 3 sets; Dumbbell Shoulder Raises: 12-15 reps, 3 sets; Tricep Kickbacks: 12-15 reps, 3 sets"
+)
+
+    lower_body_circuit = Workout(
+    workout_plan_id=9,
+    user_id=10,
+    coach_id=5,
+    title="Lower Body Circuit",
+    day_of_week="Sunday,Tuesday,Saturday", 
+    exercises="Goblet Squats: 15-20 reps, 3 sets; Bulgarian Split Squats: 12-15 reps each leg, 3 sets; Deadlifts: 12-15 reps, 3 sets; Lateral Lunges: 12-15 reps each leg, 3 sets; Hamstring Curls: 15-20 reps, 3 sets"
+)
+
+    
+
+    core_circuit = Workout(
+    workout_plan_id=10,
+    user_id=9,
+    coach_id=5,
+    title="Core Circuit",
+    day_of_week="Monday,Wednesday,Friday", 
+    exercises="V-Ups: 15-20 reps, 3 sets; Hanging Leg Raises: 10-15 reps, 3 sets; Side Plank Hip Lifts: 15-20 reps each side, 3 sets; Reverse Crunches: 15-20 reps, 3 sets; Ab Wheel Rollouts: 10-15 reps, 3 sets"
+)
+
+    hiit_challenge = Workout(
+    workout_plan_id=10,
+    user_id=9,
+    coach_id=5,
+    title="HIIT Challenge",
+    day_of_week="Tuesday,Thursday,Saturday",  
+    exercises="Burpees: 20-25 reps, 3 sets; Jump Squats: 15-20 reps, 3 sets; Mountain Climbers: 30-45 seconds, 3 sets; High Knees: 30-45 seconds, 3 sets; Plank Jacks: 30-45 seconds, 3 sets"
+)
+
+    workouts = [
+    hiit_circuit_1,
+    hiit_circuit_2,
+    steady_state_cardio,
+    tabata_training,
+    cardio_circuits,
+    jump_rope,
+    hiking,
+    stair_climbing,
+    bodyweight_cardio,
+    elliptical_trainer,
+    recumbent_bike,
+    forest_biking,
+    chest_and_triceps,
+    back_and_biceps,
+    legs_workout,
+    shoulders_and_abs,
+    chest_and_back,
+    legs_and_shoulders,
+    full_body,
+    beginner,
+    intermediate,
+    advanced,
+    flexibility,
+    core,
+    recovery,
+    daily_routine_stretch,
+    athletic_routine_stretch,
+    full_body_hiit,
+    lower_body_burn,
+    upper_body_blast,
+    core_conditioning,
+    cardio_circuit,
+    upper_body_circuit,
+    lower_body_circuit,
+    core_circuit,
+    hiit_challenge]
+    for workout in workouts:
+        db.session.add(workout)
+        db.session.commit()
+
+###exercises
+
+
+    
+
     
 
