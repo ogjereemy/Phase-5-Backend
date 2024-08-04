@@ -92,7 +92,7 @@ class WorkoutPlan(db.Model,SerializerMixin):
     user=db.relationship('User',back_populates='workout_plans')
 class Workout(db.Model,SerializerMixin):
     __tablename__="workouts"
-    serialize_rules=('-workout_plan','-user','-coach')
+    serialize_rules=('-workout_plan','-user','-coach','-exercises1')
     # serialize_rules = ('-workout_plan.workouts', '-user.workouts', '-coach.workouts')
     id= db.Column(db.Integer,primary_key=True)
     workout_plan_id =db.Column(db.Integer,db.ForeignKey('workout_plans.id'),nullable=False)
@@ -108,7 +108,8 @@ class Workout(db.Model,SerializerMixin):
     coach=db.relationship('Coach',back_populates='workouts')
 class Exercise(db.Model,SerializerMixin):
     __tablename__='exercises'
-    serialize_rules = ('-workout.exercises1',)
+    # serialize_rules = ('-workout.exercises1',)
+    serialize_rules = ('-workout',)
     id=db.Column(db.Integer,primary_key=True)
     workout_id=db.Column(db.Integer,db.ForeignKey('workouts.id'),nullable=False)
     name=db.Column(db.String(50),nullable=False)
