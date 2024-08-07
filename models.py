@@ -9,11 +9,11 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy import Enum
 from config import *
 
-class MealType(PyEnum):
-        BREAKFAST= 'breakfast'
-        LUNCH= 'lunch'
-        DINNER= 'dinner'
-        SNACK = 'snack'
+# class MealType(PyEnum):
+#         BREAKFAST= 'breakfast'
+#         LUNCH= 'lunch'
+#         DINNER= 'dinner'
+#         SNACK = 'snack'
 
 class Coach(db.Model,SerializerMixin):
     __tablename__="coaches"
@@ -27,9 +27,9 @@ class Coach(db.Model,SerializerMixin):
     bio = db.Column(db.String,nullable=False)
     specialities = db.Column(db.String,nullable=False)
     is_admin = db.Column(db.Boolean, default=False, nullable=False)
-    users=db.relationship('User',back_populates='coach')
-    workout_plans=db.relationship('WorkoutPlan',back_populates='coach')
-    workouts=db.relationship('Workout',back_populates='coach')
+    users=db.relationship('User',back_populates='coach',cascade='all, delete-orphan')
+    workout_plans=db.relationship('WorkoutPlan',back_populates='coach',cascade='all, delete-orphan')
+    workouts=db.relationship('Workout',back_populates='coach',cascade='all, delete-orphan')
     @hybrid_property
     def password_hash(self):
         return self._password_hash
@@ -48,7 +48,7 @@ class Coach(db.Model,SerializerMixin):
 class User(db.Model,SerializerMixin):
     __tablename__="users"
     # serialize_rules = ('-coach','-goals') 
-    serialize_rules = ('-coach', '-goals', '-nutrition_logs', '-workouts', '-workout_plans', '-progress_logs', '-_password_hash')
+    serialize_rules = ('-coach', '-goals', '-nutrition_logs', '-workouts', '-workout_plans', '-progress_logs')
     # serialize_rules = ('-coach.users', '-goals.user', '-nutrition_logs.user', '-workouts.user', '-workout_plans.user', '-progress_logs.user', '-_password_hash')
     id= db.Column(db.Integer, primary_key=True)
     username= db.Column(db.String(50), unique=True, nullable=False)
@@ -56,12 +56,12 @@ class User(db.Model,SerializerMixin):
     _password_hash=db.Column(db.String,nullable =False)
     photo=db.Column(db.String(255), nullable=False )
     coach_id=db.Column(db.Integer,db.ForeignKey('coaches.id'),nullable=False)
-    goals=db.relationship('Goal',back_populates='user')
+    goals=db.relationship('Goal',back_populates='user',cascade='all, delete-orphan')
     coach=db.relationship('Coach',back_populates='users')
     nutrition_logs=db.relationship('NutritionLog',back_populates='user')
-    workouts=db.relationship('Workout',back_populates='user')
-    workout_plans=db.relationship('WorkoutPlan',back_populates='user')
-    progress_logs=db.relationship('ProgressLog',back_populates='user')
+    workouts=db.relationship('Workout',back_populates='user',cascade='all, delete-orphan')
+    workout_plans=db.relationship('WorkoutPlan',back_populates='user',cascade='all, delete-orphan')
+    progress_logs=db.relationship('ProgressLog',back_populates='user',cascade='all, delete-orphan')
     @hybrid_property
     def password_hash(self):
         return self._password_hash
@@ -137,7 +137,7 @@ class NutritionLog(db.Model,SerializerMixin): ##update nutrition log for every m
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
     date=db.Column(db.Date,nullable=False)
-    meal_type=db.Column(Enum(MealType),nullable=False)
+    meal_type=db.Column(db.String,nullable=False)
     calory_intake=db.Column(db.Integer,nullable=False)
     protein=db.Column(db.Integer,nullable=False)
     fat=db.Column(db.Integer,nullable=False)
