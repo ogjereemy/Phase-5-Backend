@@ -92,7 +92,7 @@ with app.app_context():
     username="ongoma",
     email="derongoma@gmail.com",
     password_hash="odrumzz",
-    photo="coach_photo_url",
+    photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG7NXVYxEEGOB4Ihfzom3uvEXAk2pupS5Phw&s",
     bio="Expert in HIIT and functional training, with a background in sports science.",
     specialities="HIIT, Functional Training",
     is_admin=False)

@@ -28,5 +28,8 @@ bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 CORS(app)
 
-app_bp = Blueprint('app_bp', __name__, url_prefix='/app')
-auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
+# app_bp = Blueprint('app_bp', __name__, url_prefix='/app')
+# auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
+
+# app.register_blueprint(app_bp)
+# app.register_blueprint(auth_bp)
