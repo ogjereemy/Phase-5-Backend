@@ -9,11 +9,11 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy import Enum
 from config import *
 
-class MealType(PyEnum):
-        BREAKFAST= 'breakfast'
-        LUNCH= 'lunch'
-        DINNER= 'dinner'
-        SNACK = 'snack'
+# class MealType(PyEnum):
+#         BREAKFAST= 'breakfast'
+#         LUNCH= 'lunch'
+#         DINNER= 'dinner'
+#         SNACK = 'snack'
 
 class Coach(db.Model,SerializerMixin):
     __tablename__="coaches"

@@ -3,22 +3,7 @@ from config import *
 from app import app
 from sqlalchemy import text
 from datetime import datetime,date
-
-
- 
-
-    # # Create Exercises for the plan
-    # exercise1 = Exercise(name="Running", duration=30, type="Cardio", workout_plan=cardio_plan)
-    # exercise2 = Exercise(name="Cycling", duration=45, type="Cardio", workout_plan=cardio_plan)
-    # db.session.add(exercise1)
-    # db.session.add(exercise2)
-    # db.session.commit() 
-
-
-    
-
-
-    
+   
 
 
 #$ used drop tables because query.delete() brings id error
@@ -441,7 +426,7 @@ with app.app_context():
     nutrition_log1 = NutritionLog(
     user_id=1, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=300, 
     protein=10, 
     fat=5, 
@@ -451,7 +436,7 @@ with app.app_context():
     nutrition_log2 = NutritionLog(
     user_id=1, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=600, 
     protein=35, 
     fat=30, 
@@ -461,7 +446,7 @@ with app.app_context():
     nutrition_log3 = NutritionLog(
     user_id=1, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=700, 
     protein=45, 
     fat=15, 
@@ -471,7 +456,7 @@ with app.app_context():
     nutrition_log4 = NutritionLog(
     user_id=1, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=200, 
     protein=10, 
     fat=4, 
@@ -482,7 +467,7 @@ with app.app_context():
     nutrition_log5 = NutritionLog(
     user_id=2, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=400, 
     protein=15, 
     fat=20, 
@@ -492,7 +477,7 @@ with app.app_context():
     nutrition_log6 = NutritionLog(
     user_id=2, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=500, 
     protein=30, 
     fat=20, 
@@ -502,7 +487,7 @@ with app.app_context():
     nutrition_log7 = NutritionLog(
     user_id=2, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=800, 
     protein=40, 
     fat=25, 
@@ -512,7 +497,7 @@ with app.app_context():
     nutrition_log8 = NutritionLog(
     user_id=2, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=250, 
     protein=25, 
     fat=5, 
@@ -523,7 +508,7 @@ with app.app_context():
     nutrition_log9 = NutritionLog(
     user_id=3, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=350, 
     protein=10, 
     fat=10, 
@@ -533,7 +518,7 @@ with app.app_context():
     nutrition_log10 = NutritionLog(
     user_id=3, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=450, 
     protein=15, 
     fat=15, 
@@ -543,7 +528,7 @@ with app.app_context():
     nutrition_log11 = NutritionLog(
     user_id=3, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=750, 
     protein=35, 
     fat=20, 
@@ -553,7 +538,7 @@ with app.app_context():
     nutrition_log12 = NutritionLog(
     user_id=3, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=200, 
     protein=6, 
     fat=18, 
@@ -564,7 +549,7 @@ with app.app_context():
     nutrition_log13 = NutritionLog(
     user_id=4, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=250, 
     protein=20, 
     fat=5, 
@@ -574,7 +559,7 @@ with app.app_context():
     nutrition_log14 = NutritionLog(
     user_id=4, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=550, 
     protein=40, 
     fat=25, 
@@ -584,7 +569,7 @@ with app.app_context():
     nutrition_log15 = NutritionLog(
     user_id=4, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=850, 
     protein=45, 
     fat=30, 
@@ -594,7 +579,7 @@ with app.app_context():
     nutrition_log16 = NutritionLog(
     user_id=4, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=180, 
     protein=15, 
     fat=5, 
@@ -605,7 +590,7 @@ with app.app_context():
     nutrition_log17 = NutritionLog(
     user_id=5, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=300, 
     protein=12, 
     fat=8, 
@@ -615,7 +600,7 @@ with app.app_context():
     nutrition_log18 = NutritionLog(
     user_id=5, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=600, 
     protein=25, 
     fat=20, 
@@ -625,7 +610,7 @@ with app.app_context():
     nutrition_log19 = NutritionLog(
     user_id=5, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=800, 
     protein=35, 
     fat=30, 
@@ -635,7 +620,7 @@ with app.app_context():
     nutrition_log20 = NutritionLog(
     user_id=5, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=200, 
     protein=6, 
     fat=10, 
@@ -646,7 +631,7 @@ with app.app_context():
     nutrition_log21 = NutritionLog(
     user_id=6, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=400, 
     protein=20, 
     fat=10, 
@@ -656,7 +641,7 @@ with app.app_context():
     nutrition_log22 = NutritionLog(
     user_id=6, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=450, 
     protein=35, 
     fat=15, 
@@ -666,7 +651,7 @@ with app.app_context():
     nutrition_log23 = NutritionLog(
     user_id=6, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=700, 
     protein=40, 
     fat=20, 
@@ -676,7 +661,7 @@ with app.app_context():
     nutrition_log24 = NutritionLog(
     user_id=6, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=200, 
     protein=5, 
     fat=12, 
@@ -687,7 +672,7 @@ with app.app_context():
     nutrition_log25 = NutritionLog(
     user_id=7, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=350, 
     protein=20, 
     fat=5, 
@@ -697,7 +682,7 @@ with app.app_context():
     nutrition_log26 = NutritionLog(
     user_id=7, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=500, 
     protein=30, 
     fat=20, 
@@ -707,7 +692,7 @@ with app.app_context():
     nutrition_log27 = NutritionLog(
     user_id=7, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=800, 
     protein=35, 
     fat=25, 
@@ -717,7 +702,7 @@ with app.app_context():
     nutrition_log28 = NutritionLog(
     user_id=7, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=150, 
     protein=10, 
     fat=3, 
@@ -728,7 +713,7 @@ with app.app_context():
     nutrition_log29 = NutritionLog(
     user_id=8, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=400, 
     protein=18, 
     fat=12, 
@@ -738,7 +723,7 @@ with app.app_context():
     nutrition_log30 = NutritionLog(
     user_id=8, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=500, 
     protein=25, 
     fat=15, 
@@ -748,7 +733,7 @@ with app.app_context():
     nutrition_log31 = NutritionLog(
     user_id=8, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=700, 
     protein=30, 
     fat=20, 
@@ -758,7 +743,7 @@ with app.app_context():
     nutrition_log32 = NutritionLog(
     user_id=8, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=180, 
     protein=8, 
     fat=4, 
@@ -769,7 +754,7 @@ with app.app_context():
     nutrition_log33 = NutritionLog(
     user_id=9, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=350, 
     protein=15, 
     fat=8, 
@@ -779,7 +764,7 @@ with app.app_context():
     nutrition_log34 = NutritionLog(
     user_id=9, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=600, 
     protein=40, 
     fat=20, 
@@ -789,7 +774,7 @@ with app.app_context():
     nutrition_log35 = NutritionLog(
     user_id=9, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=800, 
     protein=35, 
     fat=25, 
@@ -799,7 +784,7 @@ with app.app_context():
     nutrition_log36 = NutritionLog(
     user_id=9, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=200, 
     protein=10, 
     fat=8, 
@@ -810,7 +795,7 @@ with app.app_context():
     nutrition_log37 = NutritionLog(
     user_id=10, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=300, 
     protein=15, 
     fat=10, 
@@ -820,7 +805,7 @@ with app.app_context():
     nutrition_log38 = NutritionLog(
     user_id=10, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=500, 
     protein=30, 
     fat=15, 
@@ -830,7 +815,7 @@ with app.app_context():
     nutrition_log39 = NutritionLog(
     user_id=10, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=700, 
     protein=40, 
     fat=20, 
@@ -840,7 +825,7 @@ with app.app_context():
     nutrition_log40 = NutritionLog(
     user_id=10, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=150, 
     protein=8, 
     fat=5, 
@@ -851,7 +836,7 @@ with app.app_context():
     nutrition_log41 = NutritionLog(
     user_id=11, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=350, 
     protein=12, 
     fat=15, 
@@ -861,7 +846,7 @@ with app.app_context():
     nutrition_log42 = NutritionLog(
     user_id=11, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=600, 
     protein=35, 
     fat=20, 
@@ -871,7 +856,7 @@ with app.app_context():
     nutrition_log43 = NutritionLog(
     user_id=11, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=850, 
     protein=40, 
     fat=25, 
@@ -881,7 +866,7 @@ with app.app_context():
     nutrition_log44 = NutritionLog(
     user_id=11, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=180, 
     protein=8, 
     fat=8, 
@@ -892,7 +877,7 @@ with app.app_context():
     nutrition_log45 = NutritionLog(
     user_id=12, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.BREAKFAST, 
+    meal_type="breakfast", 
     calory_intake=300, 
     protein=10, 
     fat=10, 
@@ -902,7 +887,7 @@ with app.app_context():
     nutrition_log46 = NutritionLog(
     user_id=12, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.LUNCH, 
+    meal_type="lunch", 
     calory_intake=550, 
     protein=25, 
     fat=15, 
@@ -912,7 +897,7 @@ with app.app_context():
     nutrition_log47 = NutritionLog(
     user_id=12, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.DINNER, 
+    meal_type="dinner", 
     calory_intake=700, 
     protein=35, 
     fat=20, 
@@ -922,7 +907,7 @@ with app.app_context():
     nutrition_log48 = NutritionLog(
     user_id=12, 
     date=date(2024, 8, 1), 
-    meal_type=MealType.SNACK, 
+    meal_type="snack", 
     calory_intake=150, 
     protein=5, 
     fat=5, 
