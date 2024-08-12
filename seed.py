@@ -127,6 +127,7 @@ with app.app_context():
     coach_name="Ace"
     )
 
+
     olivia = User(
     username="olivia_martin",
     email="olivia_martin@gmail.com",
