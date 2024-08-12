@@ -96,7 +96,8 @@ with app.app_context():
     email="jane_doe@gmail.com",
     password_hash="j@ne123",
     photo="https://images.pexels.com/photos/864939/pexels-photo-864939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=1  
+    coach_id=1,
+    coach_name="Steve"  
     )
 
     mike = User(
@@ -104,7 +105,8 @@ with app.app_context():
     email="michael_smith@gmail.com",
     password_hash="mike3123",
     photo="https://images.pexels.com/photos/791764/pexels-photo-791764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=2  
+    coach_id=2,
+    coach_name="Jeremy"  
     )
 
     emily = User(
@@ -112,7 +114,8 @@ with app.app_context():
     email="emily_jones@gmail.com",
     password_hash="j0n3s_boro",
     photo="https://images.pexels.com/photos/1886487/pexels-photo-1886487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=3  
+    coach_id=3,
+    coach_name="Tyra"  
     )
 
     daniel = User(
@@ -120,7 +123,8 @@ with app.app_context():
     email="daniel_wilson@gmail.com",
     password_hash="dannywilis",
     photo="https://images.pexels.com/photos/1552102/pexels-photo-1552102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=4  
+    coach_id=4,
+    coach_name="Ace"
     )
 
     olivia = User(
@@ -128,7 +132,8 @@ with app.app_context():
     email="olivia_martin@gmail.com",
     password_hash="olive_garden",
     photo="https://images.pexels.com/photos/863935/pexels-photo-863935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=5  
+    coach_id=5,
+    coach_name="Mary"  
     )
 
     liam = User(
@@ -136,7 +141,8 @@ with app.app_context():
     email="liam_anderson@gmail.com",
     password_hash="YNWA",
     photo="https://images.pexels.com/photos/2149771/pexels-photo-2149771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=1
+    coach_id=1,
+    coach_name="Steve"
     )
 
     ava = User(
@@ -144,7 +150,8 @@ with app.app_context():
     email="ava_thomas@gmail.com",
     password_hash="ava_max",
     photo="https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=2
+    coach_id=2,
+    coach_name="Jeremy"
     )
 
     noah = User(
@@ -152,7 +159,8 @@ with app.app_context():
     email="noah_taylor@gmail.com",
     password_hash="c0ld_#3arted",
     photo="https://images.pexels.com/photos/4720309/pexels-photo-4720309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=3
+    coach_id=3,
+    coach_name="Tyra"
     )
 
     sophia = User(
@@ -160,7 +168,8 @@ with app.app_context():
     email="sophia_white@gmail.com",
     password_hash="sophia_da_1st",
     photo="https://images.pexels.com/photos/25034152/pexels-photo-25034152/free-photo-of-woman-doing-deadlifts-in-the-gym.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=4
+    coach_id=4,
+    coach_name="Ace"
     )
 
     ben = User(
@@ -168,7 +177,8 @@ with app.app_context():
     email="benjamin_harris@gmail.com",
     password_hash="blue_benji",
     photo="https://images.pexels.com/photos/6389075/pexels-photo-6389075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=5
+    coach_id=5,
+    coach_name="Mary"
     )
 
     chris = User(
@@ -176,7 +186,8 @@ with app.app_context():
     email="chris_evans@gmail.com",
     password_hash="CRISTARONALDO_SUI",
     photo="https://images.pexels.com/photos/241456/pexels-photo-241456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=6  
+    coach_id=6,
+    coach_name="Derrick"  
     )
 
     nattie = User(
@@ -184,7 +195,8 @@ with app.app_context():
     email="natalie_portman@gmail.com",
     password_hash="jamal",
     photo="https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    coach_id=6  
+    coach_id=6,
+    coach_name="Derrick"  
     )
 
 
