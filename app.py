@@ -497,41 +497,44 @@ class WorkoutPlans(Resource):
             return response
 
 
-class UserProfile(Resource):##for user
+class UserProfile(Resource):  # For users
     @jwt_required()
     def get(self):
         current_identity = get_jwt_identity()
         user_type = current_identity['type']
         user_id = current_identity['id']
-        if user_type=='user':
-            user=User.query.filter_by(id=user_id).first()
+        if user_type == 'user':
+            user = User.query.filter_by(id=user_id).first()
             if user:
-                user_dict=user.to_dict()
-                response=make_response(jsonify(user_dict),200)
+                user_dict = user.to_dict()
+                response = make_response(jsonify(user_dict), 200)
                 return response
             else:
-                response=make_response(jsonify({'msg':'User not found'}),404)
+                response = make_response(jsonify({'msg': 'User not found'}), 404)
                 return response
-            
+
+    @jwt_required()
     def patch(self):
         current_identity = get_jwt_identity()
         user_type = current_identity['type']
         user_id = current_identity['id']
-        if user_type=='user':
-            user=User.query.filter_by(id=user_id).first()
+        if user_type == 'user':
+            user = User.query.filter_by(id=user_id).first()
             if user:
-                username=request.get_json()['username']
-                photo=request.get_json()['photo']
-                user.username=username
-                user.photo=photo
+                data = request.get_json()
+                # Ensure data fields are present and valid
+                username = data.get('username', user.username)
+                photo = data.get('photo', user.photo)   
+                user.username = username
+                user.photo = photo
                 db.session.commit()
-                user_dict=user.to_dict()
-                response=make_response(jsonify(user_dict),200)
+                
+                user_dict = user.to_dict()
+                response = make_response(jsonify(user_dict), 200)
                 return response
             else:
-                response=make_response(jsonify({'msg':'User not found'}),404)
-                return response
-                            
+                response = make_response(jsonify({'msg': 'User not found'}), 404)
+                return response                            
                             
                     
 
