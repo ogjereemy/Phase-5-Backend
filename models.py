@@ -56,6 +56,7 @@ class User(db.Model,SerializerMixin):
     _password_hash=db.Column(db.String,nullable =False)
     photo=db.Column(db.String(255), nullable=False )
     coach_id=db.Column(db.Integer,db.ForeignKey('coaches.id'),nullable=False)
+    coach_name=db.Column(db.String,nullable=False)
     goals=db.relationship('Goal',back_populates='user',cascade='all, delete-orphan')
     coach=db.relationship('Coach',back_populates='users')
     nutrition_logs=db.relationship('NutritionLog',back_populates='user')

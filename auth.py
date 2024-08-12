@@ -7,6 +7,7 @@ from config import *
 
 
 
+
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
 auth_api = Api(auth_bp)
 
@@ -33,6 +34,7 @@ register_args.add_argument('password1', type=str, required=True, help='Password 
 register_args.add_argument('password2', type=str, required=True, help='Password confirmation is required')
 register_args.add_argument('photo', type=str, required=True, help='Photo is required')
 register_args.add_argument('coach_id', type=int, required=True, help='Coach_id is required')
+register_args.add_argument('coach_name', type=str, required=True, help='Coach_id is required')
 
 register_coach_args.add_argument('username', type=str, required=True, help='Username is required')
 register_coach_args.add_argument('email', type=str, required=True, help='Email is required')
@@ -60,7 +62,8 @@ class Signup(Resource):
                 email=data.get('email'),
                 _password_hash=hashed_password,
                 photo=data.get('photo'),
-                coach_id=data.get('coach_id')
+                coach_id=data.get('coach_id'),
+                coach_name=data.get('coach_name')
             )
             db.session.add(new_user)
             db.session.commit()
