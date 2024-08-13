@@ -320,6 +320,28 @@ class Exercises(Resource):
         else:
             response=make_response(jsonify({"msg":"Unauthorized Access"}),401)
             return response
+        
+    @jwt_required()
+    def delete(self): ## for coaches
+        current_identity = get_jwt_identity()
+        user_type = current_identity['type']
+        coach_id = current_identity['id']
+        if user_type == 'coach':
+            coach=Coach.query.filter_by(id=coach_id).first()
+            if coach:
+                exercise_id=request.get_json()['exercise_id']
+                exercise=Exercise.query.filter_by(id=exercise_id).first()
+                if exercise:
+                    db.session.delete(exercise)
+                    db.session.commit()
+                    response=make_response(jsonify({"msg":"Exercise deleted successfully"}),200)
+                    return response
+                else:
+                    response=make_response(jsonify({'msg':'Exercise not found'}),404)
+                    return response
+        else:
+            response=make_response(jsonify({"msg":"Unauthorized Access"}),401)
+            return response
 
 
 class Workouts(Resource):
