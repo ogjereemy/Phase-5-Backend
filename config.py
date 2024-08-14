@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required,current_user,get_jwt_identity,JWTMan
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
-
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 
@@ -21,6 +21,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'fitt.track1@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Jeremy@100'
+app.config['MAIL_DEFAULT_SENDER'] = 'fitt.track1@gmail.com'
+
+mail = Mail(app)
 
 db.init_app(app)
 migrate = Migrate(app, db)
