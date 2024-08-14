@@ -1,8 +1,11 @@
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, current_user, get_jwt_identity
-from flask import Blueprint, jsonify, request, make_response
+from flask import Blueprint, jsonify, request, make_response,url_for
 from flask_restful import Api, Resource, reqparse
 from models import *
 from config import *
+from itsdangerous import URLSafeTimedSerializer
+from flask_mail import Message
+s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
@@ -122,7 +125,50 @@ class Login(Resource):
         current_identity = get_jwt_identity()
         new_access_token = create_access_token(identity=current_identity)
         return jsonify(access_token=new_access_token)
+    
+
+class ResetPasswordRequest(Resource):
+        def post(self):
+            email = request.json.get('email')
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                token = s.dumps(user.email, salt='password-reset-salt')
+                reset_url = url_for('auth_bp.reset_password', token=token, _external=True)
+                msg = Message("Password Reset Request", recipients=[user.email])
+                msg.body = f'Click the link to reset your password: {reset_url}'
+                mail.send(msg)
+                return jsonify({'message': 'Password reset email sent'}), 200
+            else:
+                return jsonify({'message': 'Email not found'}), 404
+
+class ResetPassword(Resource):
+    def get(self, token):
+        try:
+            email = s.loads(token, salt='password-reset-salt', max_age=3600)  # 1 hour expiration
+        except:
+            return jsonify({'message': 'The reset link is invalid or has expired'}), 400
+
+        return jsonify({'message': 'Please submit your new password'}), 200
+
+    def post(self, token):
+        try:
+            email = s.loads(token, salt='password-reset-salt', max_age=3600)  # 1 hour expiration
+        except:
+            return jsonify({'message': 'The reset link is invalid or has expired'}), 400
+
+        new_password = request.json.get('password')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            user._password_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+            db.session.commit()
+            return jsonify({'message': 'Your password has been updated'}), 200
+        else:
+            return jsonify({'message': 'User not found'}), 404
+
 
 # Access to certain resource
 auth_api.add_resource(Signup, '/signup')
 auth_api.add_resource(Login, '/login')
+auth_api.add_resource(ResetPasswordRequest, '/reset_password_request')
+auth_api.add_resource(ResetPassword, '/reset_password/<token>')
