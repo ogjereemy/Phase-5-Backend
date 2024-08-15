@@ -28,6 +28,8 @@ app.config['MAIL_USERNAME'] = 'fitt.track1@gmail.com'
 app.config['MAIL_PASSWORD'] = 'Jeremy@100'
 app.config['MAIL_DEFAULT_SENDER'] = 'fitt.track1@gmail.com'
 
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'bf33b4e2a163a29294876531f6ba53ead9')
+
 mail = Mail(app)
 
 db.init_app(app)
