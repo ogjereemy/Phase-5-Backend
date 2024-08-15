@@ -376,6 +376,8 @@ class Workouts(Resource):
             work_dict=[workout.to_dict() for workout in workouts]
             response=make_response(jsonify(work_dict),200)
             return response
+        
+    
     @jwt_required()
     def patch(self):## for coaches
         current_identity = get_jwt_identity()
@@ -423,6 +425,20 @@ class Workouts(Resource):
         
         else:
             response=make_response(jsonify({"msg":"Unauthorized Access"}),401)
+            return response
+
+    @jwt_required()
+    def get_coach_workouts(self): ## for coaches to see workouts assigned to users
+        current_identity = get_jwt_identity()
+        user_type = current_identity['type']
+        coach_id = current_identity['id']
+        if user_type == 'coach':
+            workouts = Workout.query.filter_by(coach_id=coach_id).all()
+            work_dict = [workout.to_dict() for workout in workouts]
+            response = make_response(jsonify(work_dict), 200)
+            return response
+        else:
+            response = make_response(jsonify({"msg": "Unauthorized Access"}), 401)
             return response
 
 
