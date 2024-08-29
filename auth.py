@@ -166,7 +166,6 @@ class ResetPassword(Resource):
         else:
             return jsonify({'message': 'User not found'}), 404
 
-
 # Access to certain resource
 auth_api.add_resource(Signup, '/signup')
 auth_api.add_resource(Login, '/login')
