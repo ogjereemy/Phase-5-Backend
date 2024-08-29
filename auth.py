@@ -11,6 +11,12 @@ from flask_mail import Message
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+
+
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')
@@ -51,53 +57,75 @@ register_coach_args.add_argument('is_admin', type=bool, required=True, help='is_
 # Signup Resource
 class Signup(Resource):
     def post(self):
-        if 'coach_id' in request.json:
-            data = register_args.parse_args()
-            if data.get("password1") != data.get("password2"):
-                return {"msg": "Passwords don't match"}, 400
-            user = User.query.filter_by(email=data.get('email')).first()
-            if user:
-                return {"msg": "User already exists."}, 401
-            hashed_password = bcrypt.generate_password_hash(data.get('password1')).decode('utf-8')
-            new_user = User(
-                username=data.get('username'),
-                email=data.get('email'),
-                _password_hash=hashed_password,
-                photo=data.get('photo'),
-                coach_id=data.get('coach_id'),
-                coach_name=data.get('coach_name')
-            )
-            db.session.add(new_user)
-            db.session.commit()
-            response = make_response(jsonify(new_user.to_dict()), 201)
-            return response
-        else:
-            data = register_coach_args.parse_args()
-            if data.get("password1") != data.get("password2"):
-                return {"msg": "Passwords don't match"}, 400
-            coach = Coach.query.filter_by(email=data.get('email')).first()
-            if coach:
-                return {"msg": "Coach already exists."}, 401
+        try:
+            if 'coach_id' in request.json:
+                data = register_args.parse_args()
+                
+                if data.get("password1") != data.get("password2"):
+                    logging.error("Passwords don't match")
+                    return {"msg": "Passwords don't match"}, 400
 
-            if not data.get('bio'):
-                return {"msg": "Bio is required for coaches."}, 400
-            if not data.get('specialities'):
-                return {"msg": "Specialities are required for coaches."}, 400
+                user = User.query.filter_by(email=data.get('email')).first()
+                if user:
+                    logging.error("User already exists.")
+                    return {"msg": "User already exists."}, 401
 
-            hashed_password = bcrypt.generate_password_hash(data.get('password1')).decode('utf-8')
-            new_coach = Coach(
-                username=data.get('username'),
-                email=data.get('email'),
-                _password_hash=hashed_password,
-                photo=data.get('photo'),
-                bio=data.get('bio'),
-                specialities=data.get('specialities'),
-                is_admin=data.get('is_admin')
-            )
-            db.session.add(new_coach)
-            db.session.commit()
-            response = make_response(jsonify(new_coach.to_dict()), 201)
-            return response
+                hashed_password = bcrypt.generate_password_hash(data.get('password1')).decode('utf-8')
+                new_user = User(
+                    username=data.get('username'),
+                    email=data.get('email'),
+                    _password_hash=hashed_password,
+                    photo=data.get('photo'),
+                    coach_id=data.get('coach_id'),
+                    coach_name=data.get('coach_name')
+                )
+                
+                db.session.add(new_user)
+                db.session.commit()
+                logging.info(f"User created: {new_user.username}")
+                
+                response = make_response(jsonify(new_user.to_dict()), 201)
+                return response
+            else:
+                data = register_coach_args.parse_args()
+                
+                if data.get("password1") != data.get("password2"):
+                    logging.error("Passwords don't match")
+                    return {"msg": "Passwords don't match"}, 400
+
+                coach = Coach.query.filter_by(email=data.get('email')).first()
+                if coach:
+                    logging.error("Coach already exists.")
+                    return {"msg": "Coach already exists."}, 401
+
+                if not data.get('bio'):
+                    logging.error("Bio is required for coaches.")
+                    return {"msg": "Bio is required for coaches."}, 400
+                if not data.get('specialities'):
+                    logging.error("Specialities are required for coaches.")
+                    return {"msg": "Specialities are required for coaches."}, 400
+
+                hashed_password = bcrypt.generate_password_hash(data.get('password1')).decode('utf-8')
+                new_coach = Coach(
+                    username=data.get('username'),
+                    email=data.get('email'),
+                    _password_hash=hashed_password,
+                    photo=data.get('photo'),
+                    bio=data.get('bio'),
+                    specialities=data.get('specialities'),
+                    is_admin=data.get('is_admin')
+                )
+                
+                db.session.add(new_coach)
+                db.session.commit()
+                logging.info(f"Coach created: {new_coach.username}")
+                
+                response = make_response(jsonify(new_coach.to_dict()), 201)
+                return response
+
+        except Exception as e:
+            logging.error(f"An error occurred: {str(e)}")
+            return {"msg": "Internal Server Error"}, 500
 
 # Login Resource
 class Login(Resource):
