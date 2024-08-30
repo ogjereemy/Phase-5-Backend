@@ -40,7 +40,7 @@ def subscribe():
         if not subscription_info:
             return jsonify({"msg": "Subscription information missing"}), 400
 
-        # Add subscription to the list (replace with database logic in production)
+        # Add subscription to the list 
         subscriptions.append(subscription_info)
 
         return jsonify({"msg": "Subscription successful"}), 200
