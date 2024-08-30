@@ -7,14 +7,9 @@ from flask_restful import Api, Resource, reqparse
 from models import *
 from config import *
 from itsdangerous import URLSafeTimedSerializer
-from flask_mail import Message
-from google.oauth2 import id_token
-from google.auth.transport import requests
 
-import logging
+# from flask_mail import Message
 
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
 
 
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
@@ -230,7 +225,11 @@ class ResetPassword(Resource):
         else:
             return jsonify({'message': 'User not found'}), 404
 
+
+# Access to certain resource
+
 # Define API resources
+
 auth_api.add_resource(Signup, '/signup')
 auth_api.add_resource(Login, '/login')
 auth_api.add_resource(GoogleLogin, '/google-login')
