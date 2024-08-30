@@ -4,7 +4,7 @@ from flask_restful import Api, Resource, reqparse
 from models import *
 from config import *
 from itsdangerous import URLSafeTimedSerializer
-from flask_mail import Message
+# from flask_mail import Message
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 
