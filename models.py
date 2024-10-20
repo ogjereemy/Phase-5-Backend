@@ -8,6 +8,8 @@ from sqlalchemy_serializer import SerializerMixin
 # from sqlalchemy.ext.associationproxy import association_proxy
 # from sqlalchemy import Enum
 from config import *
+from dotenv import load_dotenv
+load_dotenv()
 
 # class MealType(PyEnum):
 #         BREAKFAST= 'breakfast'

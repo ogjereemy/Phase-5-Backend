@@ -9,6 +9,8 @@ from models import *
 from datetime import timedelta,datetime
 from config import *
 from auth import auth_bp
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app.config['SECRET_KEY'] = 'bf33b4e2a163a29294876531f6ba53ead9'

@@ -36,6 +36,7 @@ typing-extensions = "==4.12.2"
 werkzeug = "==3.0.3"
 google-auth = "*"
 google-auth-oauthlib = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

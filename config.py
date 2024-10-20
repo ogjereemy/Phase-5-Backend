@@ -10,6 +10,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 
 from sqlalchemy import MetaData
+
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
 
 metadata = MetaData(naming_convention={

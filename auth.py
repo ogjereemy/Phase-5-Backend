@@ -6,6 +6,8 @@ from config import *
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Message
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+from dotenv import load_dotenv
+load_dotenv()
 
 
 auth_bp = Blueprint('auth_bp', __name__, url_prefix='/auth')

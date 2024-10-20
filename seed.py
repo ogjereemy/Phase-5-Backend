@@ -3,6 +3,8 @@ from config import *
 from app import app
 from sqlalchemy import text
 from datetime import datetime,date
+from dotenv import load_dotenv
+load_dotenv()
    
 
 
